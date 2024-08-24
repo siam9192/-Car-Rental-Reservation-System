@@ -1,0 +1,8 @@
+.banner {
+    background-image: url('/images/banner1.webp');
+    background-blend-mode:overlay;
+    background-color: rgba(0, 0, 0, 0.452);
+    height: 80vh;
+    background-size: cover;
+    border-radius: 10px;
+}
