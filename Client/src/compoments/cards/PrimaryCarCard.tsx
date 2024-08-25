@@ -2,6 +2,7 @@ import { TCar } from '../../types';
 import { IoCheckmarkDone } from 'react-icons/io5';
 import { LuDollarSign } from 'react-icons/lu';
 import { MdOutlineAirlineSeatReclineExtra } from 'react-icons/md';
+import { Link } from 'react-router-dom';
 type TPrimaryCarCard = {
   car: TCar;
 };
@@ -41,9 +42,11 @@ const PrimaryCarCard = ({ car }: TPrimaryCarCard) => {
           </div>
         </div>
         <div className="flex justify-between items-center mt-5">
-          <button className="px-4 py-2  bg-secondary-color text-white rounded-full">
-            Read More
-          </button>
+          <Link to={`/car/${car._id}`}>
+            <button className="px-4 py-2  bg-secondary-color text-white rounded-full">
+              Read More
+            </button>
+          </Link>
           <div className="flex items-center text-2xl font-bold dark:text-slate-100">
             <span>
               <LuDollarSign />

@@ -197,3 +197,109 @@ export const cars = [
     __v: 0,
   },
 ];
+
+export const reviews = [
+  {
+    id: 1,
+    name: 'Alice Johnson',
+    rating: 5,
+    comment:
+      'Excellent service! The car was clean and well-maintained. Highly recommend.',
+    date: '2024-08-20',
+  },
+  {
+    id: 2,
+    name: 'Bob Smith',
+    rating: 4,
+    comment:
+      'Good experience overall, but the pick-up process could be improved.',
+    date: '2024-08-18',
+  },
+  {
+    id: 3,
+    name: 'Charlie Brown',
+    rating: 3,
+    comment:
+      'Average service. The car was fine, but the customer support was lacking.',
+    date: '2024-08-15',
+  },
+  {
+    id: 4,
+    name: 'Diana Ross',
+    rating: 5,
+    comment:
+      'Fantastic rental! Smooth transaction and a great car. Will use again.',
+    date: '2024-08-14',
+  },
+  {
+    id: 5,
+    name: 'Edward White',
+    rating: 2,
+    comment:
+      'Not satisfied. The car had several issues and the return process was slow.',
+    date: '2024-08-12',
+  },
+  {
+    id: 6,
+    name: 'Fiona Green',
+    rating: 4,
+    comment:
+      'Very good service. The car was in excellent condition and the staff was friendly.',
+    date: '2024-08-10',
+  },
+  {
+    id: 7,
+    name: 'George King',
+    rating: 5,
+    comment:
+      'Exceptional experience! Easy booking and the car was perfect for our trip.',
+    date: '2024-08-08',
+  },
+  {
+    id: 8,
+    name: 'Hannah Adams',
+    rating: 3,
+    comment:
+      'Decent car but the service was not up to the mark. Expected better.',
+    date: '2024-08-05',
+  },
+  {
+    id: 9,
+    name: 'Ian Lee',
+    rating: 4,
+    comment:
+      'Good value for money. The car was nice and the overall experience was positive.',
+    date: '2024-08-03',
+  },
+  {
+    id: 10,
+    name: 'Jenna Clark',
+    rating: 5,
+    comment: 'Amazing service! Everything went smoothly from start to finish.',
+    date: '2024-08-01',
+  },
+];
+
+
+export const locations = [
+  "New York",
+  "Los Angeles",
+  "Chicago",
+  "Houston",
+  "Phoenix",
+  "Philadelphia",
+  "San Antonio",
+  "San Diego",
+  "Dallas",
+  "San Jose",
+  "Austin",
+  "Jacksonville",
+  "San Francisco",
+  "Columbus",
+  "Indianapolis",
+  "Charlotte",
+  "San Francisco",
+  "Seattle",
+  "Denver",
+  "Washington"
+]

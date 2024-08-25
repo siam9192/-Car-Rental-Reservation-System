@@ -4,9 +4,11 @@ import { IoFilter } from 'react-icons/io5';
 import { FaListUl } from 'react-icons/fa';
 import { BiSolidGridAlt } from 'react-icons/bi';
 
-type TViewType = 'grid' | 'list';
-
-const FilterBox = () => {
+export type TViewType = 'grid' | 'list';
+type TFilterBoxProps = {
+  handelSetViewType: (type: TViewType) => void | any;
+};
+const FilterBox = ({ handelSetViewType: setType }: TFilterBoxProps) => {
   const [viewType, setViewType] = useState<TViewType>('list');
 
   useEffect(() => {
@@ -18,6 +20,10 @@ const FilterBox = () => {
       setViewType(type as TViewType);
     }
   }, []);
+
+  useEffect(() => {
+    setType(viewType);
+  }, [viewType]);
 
   const handelSetViewType = (type: TViewType) => {
     localStorage.setItem('viewType', type);

@@ -5,19 +5,24 @@ import { TCar } from '../../types';
 
 import SecondaryCarCard from '../../compoments/cards/SecondaryCarCard';
 import PaginationPrimary from '../../compoments/pagination/PaginationPrimary';
-import FilterBox from './sections/FilterBox';
-import { useEffect } from 'react';
+import FilterBox, { TViewType } from './sections/FilterBox';
+import { useEffect, useState } from 'react';
 
 const CarListing = () => {
-  const viewType = 'grid';
+  const [viewType, setViewType] = useState<TViewType>('grid');
+
   useEffect(() => {
     window.scrollTo(0, 0);
   }, []);
+
+  const handelSetViewType = (type: TViewType) => {
+    setViewType(type);
+  };
   return (
     <div className="bg-gray-primary dark:bg-dark-light-primary min-h-[80vh] py-5">
       <Container>
         {/* Search box */}
-        <FilterBox />
+        <FilterBox handelSetViewType={handelSetViewType} />
         <div
           className={`grid gap-5 ${viewType === 'grid' ? ' grid-cols-1 md:grid-cols-3 lg:grid-cols-4 ' : ' grid-cols-1 md:grid-cols-2'}`}
         >

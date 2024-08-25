@@ -5,28 +5,17 @@ import { RiMenu3Fill } from 'react-icons/ri';
 import { TbCircleLetterEFilled } from 'react-icons/tb';
 import ToggleMode from './ToggleMode';
 import Logo from './Logo';
-
-const navRoutes = [
-  {
-    display: 'Home',
-    path: '/',
-  },
-  {
-    display: 'Cars',
-    path: '/car-listing',
-  },
-  {
-    display: 'About',
-    path: '/about',
-  },
-  {
-    display: 'Dashboard',
-    path: '/dashboard',
-  },
-];
+import { useAppDispatch } from '../../redux/hook';
+import { toggleSidebar } from '../../redux/features/toogle/toggle.slice';
+import { navRoutes } from '../../utils/constant';
 
 const Header = () => {
   const { pathname } = useLocation();
+  const dispatch = useAppDispatch();
+
+  const openSidebar = () => {
+    dispatch(toggleSidebar());
+  };
   return (
     <header className="py-5 md:py-8">
       <Container>
@@ -72,7 +61,10 @@ const Header = () => {
               </button>
             </Link>
             <ToggleMode />
-            <button className=" p-2 rounded-full bg-gray-100 text-2xl text-black hover:text-primary-color md:hidden ">
+            <button
+              onClick={openSidebar}
+              className=" p-2 rounded-full bg-gray-100 text-2xl text-black hover:text-primary-color md:hidden "
+            >
               <RiMenu3Fill />
             </button>
           </div>

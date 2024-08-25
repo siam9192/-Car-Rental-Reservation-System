@@ -12,7 +12,8 @@ export default {
         'secondary-color':'#4b60ee',
         'gray-primary':'#f5f6fa',
         'gray-secondary':'#f5f5f5',
-        'dark-light-primary':'#171d2bbd'
+        'dark-light-primary':'#171d2bbd',
+        'dark-light-secondary':'#1D232A'
       }
     },
   },
