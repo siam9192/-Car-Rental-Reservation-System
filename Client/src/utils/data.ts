@@ -303,3 +303,58 @@ export const locations = [
   "Denver",
   "Washington"
 ]
+
+export const insurances = [
+  "Collision Damage Waiver (CDW)",
+  "Loss Damage Waiver (LDW)",
+  "Supplemental Liability Insurance (SLI)",
+  "Personal Accident Insurance (PAI)",
+  "Personal Effects Coverage (PEC)",
+  "Roadside Assistance"
+]
+
+export const carBrands = [
+  "Acura",
+  "Alfa Romeo",
+  "Audi",
+  "BMW",
+  "Buick",
+  "Cadillac",
+  "Chevrolet",
+  "Chrysler",
+  "Citroën",
+  "Dodge",
+  "Fiat",
+  "Ford",
+  "Genesis",
+  "GMC",
+  "Honda",
+  "Hyundai",
+  "Infiniti",
+  "Jaguar",
+  "Jeep",
+  "Kia",
+  "Land Rover",
+  "Lexus",
+  "Lincoln",
+  "Maserati",
+  "Mazda",
+  "McLaren",
+  "Mercedes-Benz",
+  "Mini",
+  "Mitsubishi",
+  "Nissan",
+  "Pagani",
+  "Peugeot",
+  "Porsche",
+  "Ram",
+  "Renault",
+  "Rolls-Royce",
+  "Saab",
+  "Subaru",
+  "Suzuki",
+  "Tesla",
+  "Toyota",
+  "Volkswagen",
+  "Volvo"
+]

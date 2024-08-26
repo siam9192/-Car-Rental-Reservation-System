@@ -3,7 +3,7 @@ import Form from '../../../compoments/form/Form';
 import FormInput from '../../../compoments/form/FormInput';
 import FormSelect from '../../../compoments/form/FormSelect';
 import FormTextArea from '../../../compoments/form/FormTextArea';
-import { locations } from '../../../utils/data';
+import { insurances, locations } from '../../../utils/data';
 import LoadingModal from '../../../compoments/modal/LoadingModal';
 import { useAddCarMutation } from '../../../redux/features/admin/CarManagement.api';
 
@@ -103,6 +103,21 @@ const AddCar = () => {
             }
            </div>
           </div>
+          {/* Select Insurance options */}
+          <div className='mt-5 '>
+            <h6 className='mb-1 dark:text-slate-100'>Select Insurances</h6>
+           <div className='flex items-center gap-2 flex-wrap'>
+           {
+               insurances.map((insurance,index)=>{
+                    return  <div key={index} className='flex items-center gap-2 mt-5'>
+                    <input  onChange={handelSelectLocation} type='checkbox' value={insurance}  className='size-5 accent-secondary-color'/>
+                    <label htmlFor="" className='dark:text-slate-100'>{insurance}</label>
+                    </div>
+                })
+            }
+           </div>
+          </div>
+          {/* Select Car type */}
         <div className='mt-5'>
         <h6 className='mb-1 dark:text-slate-100 font-medium'>Car Type</h6>
         <div className='flex items-center gap-2'>
