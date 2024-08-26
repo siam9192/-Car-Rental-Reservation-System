@@ -27,9 +27,9 @@ const DashboardLayout = () => {
       <div className="col-span-2 hidden lg:block">
         <DashboardSidebar />
       </div>
-      <div className=" col-span-12 lg:col-span-10  max-h-[100vh] bg-gray-primary dark:bg-dark-light-primary p-5 md:p-10 overflow-y-auto">
+      <section className=" col-span-12 lg:col-span-10 h-[100vh] bg-gray-primary dark:bg-dark-light-primary p-2 md:p-10 overflow-y-auto">
         <Outlet />
-      </div>
+      </section>
     </div>
   );
 };

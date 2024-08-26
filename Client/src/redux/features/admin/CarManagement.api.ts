@@ -1,17 +1,24 @@
-import { baseApi } from "../baseApi/base.api";
+import { baseApi } from '../baseApi/base.api';
 
-const carManageMentApi = baseApi.injectEndpoints({
-    endpoints: (builder) => ({
-       addCar: builder.mutation({
-          query: (data) => ({
-            url: 'cars',
-            method: 'POST',
-            body: data,
-          }),
-        }),
-       
+const carManagementApi = baseApi.injectEndpoints({
+  endpoints: (builder) => ({
+    addCar: builder.mutation({
+      query: (data) => ({
+        url: 'cars',
+        method: 'POST',
+        body: data,
       }),
-})
+      invalidatesTags: ['car'],
+    }),
+    updateCar: builder.mutation({
+      query: (data) => ({
+        url: `cars/${data.id}`,
+        method: 'PUT',
+        body: data.payload,
+      }),
+      invalidatesTags: ['car'],
+    }),
+  }),
+});
 
-
-export const {useAddCarMutation} = carManageMentApi
+export const { useAddCarMutation, useUpdateCarMutation } = carManagementApi;

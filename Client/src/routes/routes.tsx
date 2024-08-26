@@ -8,6 +8,7 @@ import CarDetails from '../pages/carDetails/CarDetails';
 import DashboardLayout from '../compoments/layout/DashboardLayout';
 import { adminPaths } from './admin.routes';
 import { routeGenerator } from '../utils/fun';
+import UpdateCar from '../pages/dashboard/admin/UpdateCar';
 
 const routes = createBrowserRouter([
   {
@@ -39,7 +40,13 @@ const routes = createBrowserRouter([
   {
     path: '/dashboard',
     element: <DashboardLayout />,
-    children: routeGenerator(adminPaths),
+    children: [
+      ...routeGenerator(adminPaths),
+      {
+        path: 'update-car/:id',
+        element: <UpdateCar />,
+      },
+    ],
   },
 ]);
 

@@ -10,7 +10,11 @@ const PrimaryCarCard = ({ car }: TPrimaryCarCard) => {
   return (
     <div className=" bg-white dark:bg-[#1D232A] p-3 rounded-lg hover:cursor-pointer border  dark:border-none">
       <div className="bg-gray-secondary dark:bg-transparent p-3 md:p-5 rounded-lg">
-        <img className="w-full scale-125" src="/images/cars/car1.png" alt="" />
+        <img
+          className="w-full scale-125"
+          src="https://i.ibb.co/3rpLL1N/file.png"
+          alt=""
+        />
       </div>
       <div className="mt-5">
         <div className="space-y-3">

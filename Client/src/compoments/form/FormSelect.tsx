@@ -32,7 +32,13 @@ const FormSelect = ({ name, label, options }: TFormSelectProps) => {
               id={name}
             >
               {options.map((option, index) => (
-                <option className='dark:bg-black' value={option.value} key={index}>{option.display}</option>
+                <option
+                  className="dark:bg-black"
+                  value={option.value}
+                  key={index}
+                >
+                  {option.display}
+                </option>
               ))}
             </select>
             {error && <span className=" text-red-700 mt-1">{error}</span>}

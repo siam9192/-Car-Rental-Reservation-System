@@ -3,6 +3,7 @@ import { LuSearch } from 'react-icons/lu';
 import { IoFilter } from 'react-icons/io5';
 import { FaListUl } from 'react-icons/fa';
 import { BiSolidGridAlt } from 'react-icons/bi';
+import FilterBar from '../FilterBar';
 
 export type TViewType = 'grid' | 'list';
 type TFilterBoxProps = {
@@ -59,6 +60,7 @@ const FilterBox = ({ handelSetViewType: setType }: TFilterBoxProps) => {
           <BiSolidGridAlt />
         </button>
       </div>
+      <FilterBar />
     </div>
   );
 };

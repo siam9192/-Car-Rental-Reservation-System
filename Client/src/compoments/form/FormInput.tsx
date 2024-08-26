@@ -31,7 +31,7 @@ const FormInput = ({ type, name, label }: TInputProps) => {
               type={type}
               id={name}
             />
-            {error && <span className=" text-red-700 mt-1">{error}</span>}
+            {error && <p className=" text-red-600 mt-1">{error}</p>}
           </div>
         );
       }}

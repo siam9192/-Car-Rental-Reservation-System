@@ -32,11 +32,7 @@ const CarInfo = ({ car }: TCarInfoProps) => {
         </h5>
       </div>
       <div className="flex md:flex-row flex-col gap-5">
-        <img
-          className="w-full md:w-1/2 scale-125"
-          src="http://localhost:5173/images/cars/car1.png"
-          alt=""
-        />
+        <img className="w-full md:w-1/2 scale-125" src={car.images[0]} alt="" />
         <div>
           <div className="flex items-center gap-4">
             <div className="w-fit bg-gray-50  flex items-center gap-1 px-2 py-1 border rounded-full dark:text-gray-800">
@@ -70,18 +66,18 @@ const CarInfo = ({ car }: TCarInfoProps) => {
                 {' '}
                 <IoStar />
               </span>{' '}
-              <span className="font-medium ">{4.8}</span>
+              <span className="font-medium ">{car.rating || 0}</span>
             </div>
             <div className="w-fit bg-gray-50  flex items-center gap-1 px-2 py-1 border rounded-full dark:text-gray-800">
               <span>
                 {' '}
                 <MdReviews />
               </span>{' '}
-              <span className="font-medium ">{120}</span>
+              <span className="font-medium ">{car.reviews || 0}</span>
             </div>
           </div>
           <div className="mt-5">
-            {features.map((feature, index) => {
+            {car.features.slice(0, 5).map((feature, index) => {
               return (
                 <li className="flex items-center gap-1 dark:text-slate-100">
                   <span className="text-xl text-green-600">

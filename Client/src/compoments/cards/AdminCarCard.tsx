@@ -3,19 +3,30 @@ import { IoCheckmarkDone } from 'react-icons/io5';
 import { LuDollarSign } from 'react-icons/lu';
 import { MdOutlineAirlineSeatReclineExtra } from 'react-icons/md';
 import { Link, useNavigate } from 'react-router-dom';
+import AlertModal from '../modal/AleartModal';
 type TPrimaryCarCard = {
   car: TCar;
 };
 const AdminCarCard = ({ car }: TPrimaryCarCard) => {
   const handelDelete = () => {};
   const navigate = useNavigate();
+  // /images/cars/car1.png
+  const stopPropagation = (e: any) => {
+    e.stopPropagation();
+  };
+
+  const deleteCar = () => {};
+
+  const handelNavigate = () => {
+    navigate(`/car/${car._id}`);
+  };
   return (
-    <Link
-      to={`/car/${car._id}`}
+    <div
+      onClick={handelNavigate}
       className=" bg-white dark:bg-[#1D232A] p-3 rounded-lg hover:cursor-pointer border  dark:border-none"
     >
       <div className="bg-gray-secondary dark:bg-transparent p-3 md:p-5 rounded-lg">
-        <img className="w-full scale-125" src="/images/cars/car1.png" alt="" />
+        <img className="w-full scale-125" src={car.images[0]} alt="" />
       </div>
       <div className="mt-5">
         <div className="space-y-3">
@@ -58,17 +69,22 @@ const AdminCarCard = ({ car }: TPrimaryCarCard) => {
           </div>
         </div>
         <div className="flex justify-between items-center mt-5">
-          <Link to={`/car/${car._id}`}>
+          <Link
+            onClick={stopPropagation}
+            to={`/dashboard/update-car/${car._id}`}
+          >
             <button className="px-4 py-2  bg-secondary-color text-white rounded-full">
               Edit
             </button>
           </Link>
-          <button className="px-4 py-2  bg-red-500 text-white rounded-full">
-            Remove
-          </button>
+          <AlertModal onConfirm={deleteCar} message="Are you sure?">
+            <button className="px-4 py-2  bg-red-500 text-white rounded-full">
+              Remove
+            </button>
+          </AlertModal>
         </div>
       </div>
-    </Link>
+    </div>
   );
 };
 

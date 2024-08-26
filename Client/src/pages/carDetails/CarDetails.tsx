@@ -1,17 +1,32 @@
 import React, { useEffect } from 'react';
 import Container from '../../compoments/container/Container';
-import { cars } from '../../utils/data';
 import CarInfo from './sections/CarInfo';
 import BookingForm from './sections/BookingForm';
 import PriceSummery from './sections/PriceSummery';
 import Description from './sections/Description';
 import Reviews from './sections/Reviews';
+import { useParams } from 'react-router-dom';
+import { useGetCarQuery } from '../../redux/features/Car/Car.api';
 
 const CarDetails = () => {
-  const car = cars[0];
+  const { id } = useParams();
   useEffect(() => {
     window.scrollTo(0, 0);
   }, []);
+  const { data, isLoading: carLoading } = useGetCarQuery(id);
+  const car = data?.data;
+  if (!id) {
+    if (!car) {
+      throw new Error('Something went wrong');
+    }
+  }
+
+  if (carLoading) {
+    return <div></div>;
+  }
+  if (!car) {
+    throw new Error('Something went wrong');
+  }
   return (
     <main className="min-h-[80vh] bg-gray-primary dark:bg-dark-light-primary">
       <section className=" p-5 bg-secondary-color">

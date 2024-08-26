@@ -2,8 +2,12 @@ import React from 'react';
 import { cars } from '../../../utils/data';
 import AdminCarCard from '../../../compoments/cards/AdminCarCard';
 import { TCar } from '../../../types';
+import { useGetCarsQuery } from '../../../redux/features/Car/Car.api';
 
 const ManageCar = () => {
+  const { data } = useGetCarsQuery(undefined);
+  const cars = data?.data || [];
+  console.log(cars);
   return (
     <div>
       <h1 className="text-3xl font-bold dark:text-slate-50">Cars</h1>

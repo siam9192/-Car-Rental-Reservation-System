@@ -9,8 +9,12 @@ export type TCar = {
   brand: string;
   status?: 'available' | 'unavailable';
   features: Array<string>;
+  insurances: Array<string>;
+  locations: Array<string>;
   pricePerHour: number;
-  isDeleted?: boolean;
+  rating: number;
+  reviews: number;
+  isDeleted: boolean;
   createdAt: string;
   updatedAt: string;
   __v: number;

@@ -2,11 +2,11 @@ import { Controller, useFormContext } from 'react-hook-form';
 type TFormTextAreaProps = {
   name: string;
   label?: string;
-  height:string,
-  resize?:boolean
+  height: string;
+  resize?: boolean;
 };
 
-const FormTextArea = ({  name, label,height,resize }: TFormTextAreaProps) => {
+const FormTextArea = ({ name, label, height, resize }: TFormTextAreaProps) => {
   const {
     formState: { errors },
   } = useFormContext();
@@ -30,8 +30,7 @@ const FormTextArea = ({  name, label,height,resize }: TFormTextAreaProps) => {
               {...field}
               value={field.value || ''}
               id={name}
-
-              style={{height:height}}
+              style={{ height: height }}
             />
             {error && <span className=" text-red-700 mt-1">{error}</span>}
           </div>

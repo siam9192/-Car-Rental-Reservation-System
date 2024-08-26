@@ -1,3 +1,5 @@
+import { TUser } from '../../../types';
+import { TResponseRedux } from '../../../types/global';
 import { baseApi } from '../baseApi/base.api';
 
 const authApi = baseApi.injectEndpoints({
@@ -16,7 +18,18 @@ const authApi = baseApi.injectEndpoints({
         body: userInfo,
       }),
     }),
+    getMe: builder.query({
+      query: (userInfo) => ({
+        url: '/auth/get-me',
+        method: 'GET'
+      }),
+      transformResponse: (response: TResponseRedux<TUser>) => {
+        return {
+          data: response.data,
+        };
+      },
+    }),
   }),
 });
 
-export const { useSignupMutation, useLoginMutation } = authApi;
+export const {useGetMeQuery,useSignupMutation, useLoginMutation } = authApi;
