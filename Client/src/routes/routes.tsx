@@ -9,6 +9,9 @@ import DashboardLayout from '../compoments/layout/DashboardLayout';
 import { adminPaths } from './admin.routes';
 import { routeGenerator } from '../utils/fun';
 import UpdateCar from '../pages/dashboard/admin/UpdateCar';
+import PrivateRoute from '../ProtectedRoute/PrivateRoute';
+import AuthRouteProtector from '../ProtectedRoute/AuthRouteProtector';
+import { userPaths } from './user.routes';
 
 const routes = createBrowserRouter([
   {
@@ -29,23 +32,31 @@ const routes = createBrowserRouter([
       },
       {
         path: '/auth/sign-up',
-        element: <SignUp />,
+        element: <AuthRouteProtector><SignUp /></AuthRouteProtector>,
       },
       {
         path: '/auth/login',
-        element: <Login />,
+        element: <AuthRouteProtector><Login /></AuthRouteProtector>,
       },
     ],
   },
   {
-    path: '/dashboard',
-    element: <DashboardLayout />,
+    path: '/dashboard/admin',
+    element: <PrivateRoute roles={["admin"]}><DashboardLayout /></PrivateRoute>,
     children: [
       ...routeGenerator(adminPaths),
       {
         path: 'update-car/:id',
         element: <UpdateCar />,
       },
+    ],
+  },
+  {
+    path: '/dashboard',
+    element: <PrivateRoute roles={['user']}><DashboardLayout /></PrivateRoute>,
+    children: [
+      ...routeGenerator(userPaths),
+
     ],
   },
 ]);

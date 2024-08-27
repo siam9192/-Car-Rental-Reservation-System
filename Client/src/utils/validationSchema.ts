@@ -20,3 +20,10 @@ export const bookingValidationSchema = z.object({
     .string({ required_error: 'Driving License is required' })
     .min(1, 'Driving License is required'),
 });
+
+
+export const updateProfileValidationSchema = z.object({
+   name: z.string({ required_error: 'Name  is required' }).min(3,'Name must be at least 3 character'),
+   phone: z.string().optional(),
+   address: z.string().optional(),
+});

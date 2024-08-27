@@ -12,7 +12,7 @@ const PaginationPrimary = ({ page }: TPaginationPrimaryProps) => {
     setPageNumber(num);
   };
   return (
-    <div className="flex  items-center gap-5 bg-white p-2 shadow-lg rounded-md w-fit  select-none">
+    <div className="flex  items-center gap-5 dark:bg-dark-light-secondary  text-gray-700 dark:text-slate-100 p-2 shadow-lg rounded-md w-fit  select-none">
       {/* left arrow */}
       <div
         onClick={() => {
@@ -22,14 +22,14 @@ const PaginationPrimary = ({ page }: TPaginationPrimaryProps) => {
       >
         PREV
       </div>
-      <div className="flex justify-center items-center gap-2 ">
+      <div className="flex justify-center items-center gap-2  ">
         {[...Array(page).keys()].map((item, ind) => (
           <div
             key={item}
             onClick={() => {
               setPageNumber(item);
             }}
-            className={`cursor-pointer hover:scale-110  border-b-2  text-sm scale-100 transition-all duration-200 px-3 ${pageNumber === item ? 'border-sky-300' : 'border-white'}   font-semibold text-gray-700   py-[6px] `}
+            className={`cursor-pointer hover:scale-110  border-b-2  text-sm scale-100 transition-all duration-200 px-3 ${pageNumber === item ? 'border-sky-300' : 'border-white'}   font-semibold   py-[6px] `}
           >
             {item + 1}
           </div>

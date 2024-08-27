@@ -65,7 +65,7 @@ const CarListing = () => {
           </div>
         )}
         {cars?.length && (
-          <div className="mt-5 flex justify-end">
+          <div className="mt-20 flex justify-center">
             <PaginationPrimary page={5} />
           </div>
         )}

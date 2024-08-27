@@ -1,28 +1,35 @@
 import React, { useState } from 'react';
 import { sidebarItemsGenerator } from '../utils/fun';
 import { adminPaths } from '../routes/admin.routes';
-import Logo from '../compoments/reuse/Logo';
 import { BiLogOutCircle } from 'react-icons/bi';
 import { Link, useLocation } from 'react-router-dom';
-import ToggleMode from '../compoments/reuse/ToggleMode';
+import LogoutButton from '../compoments/button/LogoutButton';
+import { useAppSelector } from '../redux/hook';
+import { userPaths } from '../routes/user.routes';
 
 const DashboardSidebar = () => {
   const { pathname } = useLocation();
   const [active, setActive] = useState(0);
-  let sidebarItems;
-  sidebarItems = sidebarItemsGenerator(adminPaths);
+  const user = useAppSelector(state=>state.auth.user)
+  let sidebarItems:any;
+  switch(user?.role){
+    case 'admin':
+      sidebarItems = sidebarItemsGenerator(adminPaths);
+      break
+    case 'user':
+      sidebarItems = sidebarItemsGenerator(userPaths)
+  }
+  
 
   const handelSetActive = (value: number) => {
     setActive(value);
   };
-
+ 
   return (
-    <section className="h-[100vh] w-full bg-white dark:bg-dark-light-secondary p-5 shadow">
-      <Logo />
-      <ToggleMode />
+    <section className="h-[100vh] w-full bg-white dark:bg-dark-light-secondary pt-32 px-5 shadow">
       <div className=" flex flex-col justify-between h-full ">
         <div className="mt-10 space-y-5">
-          {sidebarItems.map((item, index) => {
+          {sidebarItems.map((item:any, index:number) => {
             return (
               <Link
                 onClick={() => handelSetActive(index)}
@@ -47,13 +54,7 @@ const DashboardSidebar = () => {
         </div>
         <div>
           <div className="mb-20 space-y-5">
-            <div className="flex items-center gap-2 p-3  rounded-lg">
-              <span className="text-2xl text-black dark:text-slate-50">
-                {' '}
-                <BiLogOutCircle />
-              </span>{' '}
-              <h6 className="text-xl font-medium">Logout</h6>
-            </div>
+           <LogoutButton/>
           </div>
         </div>
       </div>

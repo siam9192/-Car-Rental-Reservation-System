@@ -35,18 +35,7 @@ const bookingApi = baseApi.injectEndpoints({
       },
       providesTags: ['booking'],
     }),
-    getMyBookings: builder.query({
-      query: (args) => ({
-        url: 'bookings/my-booking',
-        method: 'GET',
-      }),
-      transformResponse: (response: TResponseRedux<TBooking[]>) => {
-        return {
-          data: response.data,
-        };
-      },
-      providesTags: ['booking'],
-    }),
+   
 
     getBooking: builder.query({
       query: (id) => ({

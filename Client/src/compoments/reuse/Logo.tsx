@@ -5,9 +5,9 @@ import { Link } from 'react-router-dom';
 const Logo = () => {
   return (
    <Link to={'/'}>
-    <h1 className=" flex items-center text-black dark:text-white text-4xl font-semibold ">
+    <h1 className=" flex items-center text-black dark:text-white text-3xl md:text-4xl font-semibold ">
       DRIV
-      <span className="font-bold text-primary-color text-5xl">
+      <span className="font-bold text-primary-color text-4xl md:text-5xl">
         <TbCircleLetterEFilled />
       </span>
     </h1>

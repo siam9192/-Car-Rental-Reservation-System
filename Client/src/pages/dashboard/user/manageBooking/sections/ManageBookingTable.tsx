@@ -1,14 +1,11 @@
-import { useGetBookingsQuery } from '../../../../../redux/features/booking/booking.api';
-import {
-  useApproveBookingMutation,
-  useCancelBookingMutation,
-} from '../../../../../redux/features/admin/booking.api';
+import { useGetMyBookingsQuery } from "../../../../../redux/features/user/bookingManagement";
 
 const ManageBookingTable = () => {
-  const { data } = useGetBookingsQuery(undefined);
+  const { data } = useGetMyBookingsQuery(undefined);
   const bookings = data?.data;
 
   const heads = [
+    'Id',
     'Name',
     'Car',
     'Start Time',
@@ -17,14 +14,12 @@ const ManageBookingTable = () => {
     'Payment Status',
     'Action',
   ];
-  const [approve] = useApproveBookingMutation();
-  const [cancel] = useCancelBookingMutation();
+//   const [approve] = useApproveBookingMutation();
+//   const [cancel] = useCancelBookingMutation();
 
-  const handelApproveBooking = (id: string) => {
-    approve(id);
-  };
+  
   const handelCancelBooking = (id: string) => {
-    cancel(id);
+    // cancel(id);
   };
   return (
     <div className="flex flex-col">
@@ -46,6 +41,9 @@ const ManageBookingTable = () => {
                   return (
                     <tr className="border-b border-neutral-200 dark:border-white/10">
                       <td className="whitespace-nowrap px-6 py-4 font-medium">
+                        #{booking._id}
+                      </td>
+                      <td className="whitespace-nowrap px-6 py-4 font-medium">
                         {booking.user.name}
                       </td>
                       <td className="whitespace-nowrap px-6 py-4">
@@ -66,12 +64,7 @@ const ManageBookingTable = () => {
                       <td className="whitespace-nowrap px-6 py-4 space-x-2 ">
                         {booking.status === 'pending' ? (
                           <>
-                            <button
-                              onClick={() => handelApproveBooking(booking._id)}
-                              className="px-4 py-2 bg-secondary-color text-white"
-                            >
-                              Approve
-                            </button>
+                          
                             <button
                               onClick={() => handelCancelBooking(booking._id)}
                               className="px-4 py-2 bg-red-500 text-white"
@@ -81,7 +74,6 @@ const ManageBookingTable = () => {
                           </>
                         ) : (
                           <button
-                            onClick={() => handelApproveBooking(booking._id)}
                             className="px-4 py-2 bg-secondary-color text-white"
                           >
                             Details

@@ -11,6 +11,7 @@ import LoadingModal from '../../compoments/modal/LoadingModal';
 import { setUser } from '../../redux/features/auth/auth.slice';
 import { decodeToken } from '../../utils/fun';
 import { useAppDispatch } from '../../redux/hook';
+import { toggleLogging } from '../../redux/features/toogle/toggle.slice';
 const Login = () => {
   const navigate = useNavigate();
   const { state } = useLocation();
@@ -46,12 +47,14 @@ const Login = () => {
         exp: decode.exp,
         iat: decode.iat,
       };
+      dispatch(toggleLogging())
       dispatch(setUser({ user, token: data.token }));
       if (state) {
         navigate(state);
       } else {
-        navigate('/');
+        navigate('/dashboard');
       }
+      dispatch(toggleLogging())
     }
   };
   return (
