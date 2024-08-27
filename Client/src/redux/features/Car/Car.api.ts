@@ -1,15 +1,26 @@
 import { TCar } from '../../../types';
-import { TResponseRedux } from '../../../types/global';
+import { TParam, TResponseRedux } from '../../../types/global';
 import { baseApi } from '../baseApi/base.api';
 
 const carApi = baseApi.injectEndpoints({
   endpoints: (builder) => ({
     getCars: builder.query({
-      query: (data) => ({
-        url: 'cars',
-        method: 'GET',
-      }),
-      transformResponse: (response: TResponseRedux<TCar[]>) => {
+      query: (params:TParam[]|undefined) => {
+        if (typeof params === undefined) {
+          params = [];
+        }
+
+        const searchParam = new URLSearchParams();
+        params?.forEach((item) => {
+          searchParam.append(item.name, item.value);
+        });
+
+        return {
+          url: `cars?${searchParam.toString()}`,
+          method: 'GET',
+        }
+      },
+ transformResponse: (response: TResponseRedux<TCar[]>) => {
         return {
           data: response.data,
         };

@@ -4,12 +4,9 @@ import { carBrands, carTypes, locations } from '../../../../../utils/data';
 import { DateRange } from 'react-date-range';
 import 'react-date-range/dist/styles.css'; // main style file
 import 'react-date-range/dist/theme/default.css'; // theme css file
+import { useLocation, useNavigate } from 'react-router-dom';
 const SearchForm = () => {
   const [openDatePicker, setOpenDatePicker] = useState(false);
-
-  const handelSelect = (ranges: any) => {
-    console.log(handelSelect);
-  };
   const [state, setState] = useState<any>([
     {
       startDate: new Date(),
@@ -41,11 +38,28 @@ const SearchForm = () => {
     };
   }, []);
 
+  const location = useLocation();
+  const navigate = useNavigate()
+ 
+  const handelSearch = (name:string)=>{
+   return (value:string)=>{
+    const searchParams = new URLSearchParams(location.search)
+    
+     searchParams.delete(name)
+     if(value){
+    
+      searchParams.append(name,value)
+    }
+  
+      navigate(`/dashboard/booking?${searchParams.toString()}`)
+   }
+   
+  }
   return (
     <div className="mt-5 grid md:grid-cols-3 lg:grid-cols-4 gap-5 p-5 md:p-10 bg-white dark:bg-dark-light-secondary shadow rounded-lg ">
-      <Select options={locationOptions} />
-      <Select options={brandOptions} />
-      <Select options={carTypeOptions} />
+      <Select onChange={handelSearch('location')}  options={locationOptions} />
+      <Select onChange={handelSearch('brand')} options={brandOptions} />
+      <Select onChange={handelSearch('type')} options={carTypeOptions} />
 
       {/* Date picker */}
       <div

@@ -1,6 +1,7 @@
 import OverViewCardContainer from './OverviewCardContainer';
 
 const OverviewCard = ({ data }: { data: any }) => {
+
   return (
     <OverViewCardContainer>
       <div className="">
@@ -16,12 +17,12 @@ const OverviewCard = ({ data }: { data: any }) => {
           <h3 className="text-2xl text-gray-900 dark:text-slate-100 font-medium mb-4">
             {data.value}
           </h3>
-          <p className="text-[14px] font-medium text-gray-600">
+          {/* <p className="text-[14px] font-medium text-gray-600">
             <span className="p-1 text-[14px] text-blue-600 bg-info_color bg-opacity-20 rounded-md">
               3.85%
             </span>{' '}
             Since last week
-          </p>
+          </p> */}
         </div>
       </div>
     </OverViewCardContainer>

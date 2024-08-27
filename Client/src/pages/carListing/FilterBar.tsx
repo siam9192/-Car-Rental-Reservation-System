@@ -1,8 +1,10 @@
 import React, { useEffect, useState } from 'react';
-import { carTypes } from '../../utils/data';
+import { carBrands, carTypes } from '../../utils/data';
+import { IoFilter } from 'react-icons/io5';
 
-const FilterBar = () => {
-  const [isOpen, setIsOpen] = useState(true);
+
+const FilterBar = ({search}:{search:any}) => {
+  const [isOpen, setOpen] = useState(false);
   useEffect(() => {
     if (isOpen) {
       window.document.body.style.overflow = 'hidden';
@@ -13,6 +15,10 @@ const FilterBar = () => {
   }, [isOpen]);
 
   const priceRangeOptions = [
+    {
+      label: 'Default',
+      value: null
+    },
     {
       label: '$0-100',
       value: {
@@ -27,13 +33,7 @@ const FilterBar = () => {
         max: 200,
       },
     },
-    {
-      label: '$101-200',
-      value: {
-        min: 101,
-        max: 200,
-      },
-    },
+   
     {
       label: '$201-500',
       value: {
@@ -41,10 +41,36 @@ const FilterBar = () => {
         max: 500,
       },
     },
+    {
+      label: '$501-1000',
+      value: {
+        min: 101,
+        max: 200,
+      },
+    },
   ];
+  const brandOptions = carBrands.map(item=>({
+    label:item,
+    value:item
+  }))
+
+  
+
+
+  
+ 
+
+
   return (
-    <section
-      onClick={() => setIsOpen(false)}
+  <div>
+     <button onClick={()=>setOpen(true)} className="flex items-center gap-1 bg-white px-4 py-2 rounded-full border">
+          <span className="text-xl">
+            <IoFilter />
+          </span>
+          <span>Filter</span>
+        </button>
+      <section
+      onClick={() => setOpen(false)}
       className={` absolute bg-gray-600 bg-opacity-50 top-0 right-0  w-full h-[90vh] overflow-hidden z-50 flex justify-end ${isOpen ? 'block' : 'hidden'}`}
     >
       <div
@@ -56,9 +82,27 @@ const FilterBar = () => {
         </h1>
         <div className="mt-5">
           <h6 className="font-medium dark:text-slate-100 text-gray-800">
+            Select Brand
+          </h6>
+          <select
+          onChange={(e)=>search('brand')(e.target.value)}
+            className="mt-2 border  border-gray-900 rounded-md w-full py-2 "
+            name=""
+            id=""
+          >
+            {brandOptions.map((brand, index) => (
+              <option value={brand.value} key={index}>
+                {brand.label}
+              </option>
+            ))}
+          </select>
+        </div>
+        <div className="mt-5">
+          <h6 className="font-medium dark:text-slate-100 text-gray-800">
             Select Car Type
           </h6>
           <select
+          onChange={(e)=>search('type')(e.target.value)}
             className="mt-2 border  border-gray-900 rounded-md w-full py-2 "
             name=""
             id=""
@@ -75,6 +119,7 @@ const FilterBar = () => {
             Select Price Range
           </h6>
           <select
+            onChange={(e)=>search('brand')(e.target.value)}
             className="mt-2 border  border-gray-900 rounded-md w-full py-2 "
             name=""
             id=""
@@ -96,6 +141,7 @@ const FilterBar = () => {
         </div>
       </div>
     </section>
+  </div>
   );
 };
 

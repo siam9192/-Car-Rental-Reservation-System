@@ -32,7 +32,7 @@ const CarInfo = ({ car }: TCarInfoProps) => {
         </h5>
       </div>
       <div className="flex md:flex-row flex-col gap-5">
-        <img className="w-full md:w-1/2 scale-125" src={car.images[0]} alt="" />
+        <img className="w-full md:w-1/2 " src={car.images[0]} alt="" />
         <div>
           <div className="flex items-center gap-4">
             <div className="w-fit bg-gray-50  flex items-center gap-1 px-2 py-1 border rounded-full dark:text-gray-800">

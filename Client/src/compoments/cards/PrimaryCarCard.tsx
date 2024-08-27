@@ -12,7 +12,7 @@ const PrimaryCarCard = ({ car }: TPrimaryCarCard) => {
       <div className="bg-gray-secondary dark:bg-transparent p-3 md:p-5 rounded-lg">
         <img
           className="w-full scale-125"
-          src="https://i.ibb.co/3rpLL1N/file.png"
+          src={car.images[0]}
           alt=""
         />
       </div>

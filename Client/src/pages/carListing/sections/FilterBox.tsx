@@ -1,9 +1,10 @@
-import React, { useEffect, useState } from 'react';
+import React, { KeyboardEvent, useEffect, useState } from 'react';
 import { LuSearch } from 'react-icons/lu';
 import { IoFilter } from 'react-icons/io5';
 import { FaListUl } from 'react-icons/fa';
 import { BiSolidGridAlt } from 'react-icons/bi';
 import FilterBar from '../FilterBar';
+import { useLocation, useNavigate } from 'react-router-dom';
 
 export type TViewType = 'grid' | 'list';
 type TFilterBoxProps = {
@@ -30,23 +31,42 @@ const FilterBox = ({ handelSetViewType: setType }: TFilterBoxProps) => {
     localStorage.setItem('viewType', type);
     setViewType(type);
   };
+  const location = useLocation();
+  const navigate = useNavigate()
+ 
+  const handelSearch = (name:string)=>{
+   return (value:string)=>{
+    const searchParams = new URLSearchParams(location.search)
+  
+     searchParams.delete(name)
+     if(value){
+    
+      searchParams.append(name,value)
+    }
+  
+      navigate(`/car-listing?${searchParams.toString()}`)
+   }
+   
+  }
+
+  const handelKeywordSearch = (e:KeyboardEvent<HTMLInputElement>)=>{
+    const target = e.currentTarget 
+   if(e.key === 'Enter'){
+    handelSearch('searchTerm')(target.value)
+   }
+  }
   return (
     <div className=" flex  flex-col md:flex-row md:justify-between md:items-center gap-2 md:gap-0 py-10">
       <div className=" flex items-center gap-2  w-10/12 md:w-1/2 lg:w-1/3 bg-white rounded-full p-2 border ">
         <LuSearch />
         <input
+         onKeyDown={handelKeywordSearch}
           type="text"
           className="w-full border-none  outline-none"
           placeholder="Search keyword"
         />
       </div>
       <div className="flex items-center justify-end md:justify-start gap-3   ">
-        <button className="flex items-center gap-1 bg-white px-4 py-2 rounded-full border">
-          <span className="text-xl">
-            <IoFilter />
-          </span>
-          <span>Filter</span>
-        </button>
         <button
           onClick={() => handelSetViewType('list')}
           className={`text-xl p-2  ${viewType === 'list' ? 'bg-primary-color' : 'bg-white border'} rounded-full  `}
@@ -59,8 +79,9 @@ const FilterBox = ({ handelSetViewType: setType }: TFilterBoxProps) => {
         >
           <BiSolidGridAlt />
         </button>
+        <FilterBar search = {handelSearch}/>
       </div>
-      <FilterBar />
+    
     </div>
   );
 };

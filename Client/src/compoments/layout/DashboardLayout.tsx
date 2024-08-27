@@ -2,6 +2,7 @@ import React, { useEffect } from 'react';
 import { Outlet } from 'react-router-dom';
 import DashboardSidebar from '../../Sidebar/DashboardSidebar';
 import { modes } from '../../utils/constant';
+import DashboardHeader from '../reuse/DashboardHeader';
 
 const DashboardLayout = () => {
   useEffect(() => {
@@ -27,7 +28,8 @@ const DashboardLayout = () => {
       <div className="col-span-2 hidden lg:block">
         <DashboardSidebar />
       </div>
-      <section className=" col-span-12 lg:col-span-10 h-[100vh] bg-gray-primary dark:bg-dark-light-primary p-2 md:p-10 overflow-y-auto">
+      <section className=" col-span-12 lg:col-span-10 h-[100vh] bg-gray-primary dark:bg-dark-light-primary p-2 md:p-10 overflow-y-auto relative">
+        {/* <DashboardHeader/> */}
         <Outlet />
       </section>
     </div>
