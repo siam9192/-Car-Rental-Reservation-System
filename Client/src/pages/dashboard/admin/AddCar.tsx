@@ -3,7 +3,13 @@ import Form from '../../../compoments/form/Form';
 import FormInput from '../../../compoments/form/FormInput';
 import FormSelect from '../../../compoments/form/FormSelect';
 import FormTextArea from '../../../compoments/form/FormTextArea';
-import { carFeatures, insurances, locations } from '../../../utils/data';
+import {
+  carBrands,
+  carFeatures,
+  carTypes,
+  insurances,
+  locations,
+} from '../../../utils/data';
 import LoadingModal from '../../../compoments/modal/LoadingModal';
 import { useAddCarMutation } from '../../../redux/features/admin/CarManagement.api';
 import { zodResolver } from '@hookform/resolvers/zod';
@@ -20,7 +26,14 @@ const AddCar = () => {
     display: item,
     value: item,
   }));
-
+  const carTypeOptions = carTypes.map((item) => ({
+    display: item,
+    value: item,
+  }));
+  const brandOptions = carBrands.map((item) => ({
+    display: item,
+    value: item,
+  }));
   const handelSetImageUrl = (url: string) => {
     setImagesUrl([...imagesUrl, url]);
   };
@@ -117,6 +130,12 @@ const AddCar = () => {
     }
   };
 
+  const defaultValues = {
+    brand: carBrands[0],
+    type: carTypes[0],
+    seats: 1,
+  };
+
   return (
     <section>
       <h1 className="text-3xl font-bold dark:text-slate-50">Add Car</h1>
@@ -124,13 +143,14 @@ const AddCar = () => {
         <Form
           onSubmit={onSubmit}
           resolver={zodResolver(addCarValidationSchema)}
+          defaultValues={defaultValues}
         >
           <div className="grid grid-cols-2 gap-5">
             <FormInput name="name" label="Car Name" type="text" />
-            <FormInput name="brand" label="Brand Name" type="text" />
+            <FormSelect name="brand" label="Brand" options={brandOptions} />
           </div>
 
-          <div className="mt-5 grid grid-cols-3 gap-5">
+          <div className="mt-5 grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-5">
             <FormSelect
               name="seats"
               label="Car Seats"
@@ -142,6 +162,7 @@ const AddCar = () => {
               type="number"
             />
             <FormInput name="color" label="Car Color" type="text" />
+            <FormSelect name="type" label="Car Type" options={carTypeOptions} />
           </div>
 
           {/* Select features */}
@@ -211,8 +232,8 @@ const AddCar = () => {
               })}
             </div>
           </div>
-          {/* Select Car type */}
-          <div className="mt-5">
+
+          {/* <div className="mt-5">
             <h6 className="mb-1 dark:text-slate-100 font-medium">Car Type</h6>
             <div className="flex items-center gap-2">
               <input
@@ -224,7 +245,7 @@ const AddCar = () => {
                 Electric Car
               </label>
             </div>
-          </div>
+          </div> */}
           <div className="mt-5">
             <FormTextArea
               name="description"

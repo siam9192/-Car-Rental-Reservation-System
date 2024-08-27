@@ -3,10 +3,7 @@ import Form from '../../../compoments/form/Form';
 import FormInput from '../../../compoments/form/FormInput';
 
 const BookingForm = () => {
-
-  const onSubmit = () => {
-    
-  };
+  const onSubmit = () => {};
   return (
     <div className="bg-white dark:bg-dark-light-secondary p-10 shadow">
       <h1 className="text-3xl font-semibold dark:text-slate-50">

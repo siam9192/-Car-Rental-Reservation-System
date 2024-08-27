@@ -13,8 +13,10 @@ export const addCarValidationSchema = z.object({
   }),
 });
 
-export const bookingValidationSchema =  z.object({
+export const bookingValidationSchema = z.object({
   nid: z.string().optional(),
   passport: z.string().optional(),
-  drivingLicense: z.string({ required_error: 'Driving License is required' }).min(1, 'Driving License is required')
-})
+  drivingLicense: z
+    .string({ required_error: 'Driving License is required' })
+    .min(1, 'Driving License is required'),
+});

@@ -23,12 +23,12 @@ const AdminCarCard = ({ car }: TPrimaryCarCard) => {
   return (
     <div
       onClick={handelNavigate}
-      className=" bg-white dark:bg-[#1D232A] p-3 rounded-lg hover:cursor-pointer border  dark:border-none"
+      className=" bg-white dark:bg-[#1D232A] p-3 rounded-lg hover:cursor-pointer border  dark:border-none flex flex-col h-full"
     >
       <div className="bg-gray-secondary dark:bg-transparent p-3 md:p-5 rounded-lg">
         <img className="w-full scale-125" src={car.images[0]} alt="" />
       </div>
-      <div className="mt-5">
+      <div className="mt-5 ">
         <div className="space-y-3">
           <div className="space-y-2">
             <h6 className="font-medium dark:text-slate-200">{car.brand}</h6>

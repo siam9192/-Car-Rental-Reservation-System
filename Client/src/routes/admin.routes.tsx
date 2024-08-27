@@ -10,6 +10,8 @@ import AddCar from '../pages/dashboard/admin/AddCar';
 import ManageBooking from '../pages/dashboard/admin/ManageBooking/ManageBooking';
 import ManageUser from '../pages/dashboard/admin/ManageUser/ManageUser';
 import AdminOverview from '../pages/dashboard/admin/adminOverview/AdminOverview';
+import ManageReturnCar from '../pages/dashboard/admin/manageReturnCar/ManageReturnCar';
+import { BsArrowReturnRight } from 'react-icons/bs';
 
 export const adminPaths: TSidebarItem[] = [
   {
@@ -24,17 +26,24 @@ export const adminPaths: TSidebarItem[] = [
     path: 'booking',
     element: <Booking />,
   },
-  {
-    icon: LiaCarSideSolid,
-    title: 'Manage Booking',
-    path: 'manage-booking',
-    element: <ManageBooking/>,
-  },
+
   {
     icon: IoCarSportOutline,
     title: 'Manage Car',
     path: 'manage-car',
     element: <ManageCar />,
+  },
+  {
+    icon: LiaCarSideSolid,
+    title: 'Manage Booking',
+    path: 'manage-booking',
+    element: <ManageBooking />,
+  },
+  {
+    icon: BsArrowReturnRight,
+    title: 'Manage Return Car',
+    path: 'manage-return-car',
+    element: <ManageReturnCar />,
   },
   {
     icon: LiaUsersCogSolid,
@@ -48,5 +57,4 @@ export const adminPaths: TSidebarItem[] = [
     path: 'add-car',
     element: <AddCar />,
   },
-  
 ];

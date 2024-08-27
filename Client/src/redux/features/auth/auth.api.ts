@@ -21,7 +21,7 @@ const authApi = baseApi.injectEndpoints({
     getMe: builder.query({
       query: (userInfo) => ({
         url: '/auth/get-me',
-        method: 'GET'
+        method: 'GET',
       }),
       transformResponse: (response: TResponseRedux<TUser>) => {
         return {
@@ -32,4 +32,4 @@ const authApi = baseApi.injectEndpoints({
   }),
 });
 
-export const {useGetMeQuery,useSignupMutation, useLoginMutation } = authApi;
+export const { useGetMeQuery, useSignupMutation, useLoginMutation } = authApi;

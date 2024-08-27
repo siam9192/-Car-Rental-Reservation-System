@@ -15,4 +15,9 @@ export type TError = {
   status: number;
 };
 
+export type TParam = {
+  name: string;
+  value: string;
+};
+
 export type TResponseRedux<T> = TResponse<T> & BaseQueryApi;
