@@ -5,8 +5,11 @@ import PrimaryCarCard from '../../../compoments/cards/PrimaryCarCard';
 import { TCar } from '../../../types';
 import { HiOutlineArrowLongRight } from 'react-icons/hi2';
 import { Link } from 'react-router-dom';
+import { useGetCarsQuery } from '../../../redux/features/Car/Car.api';
 
 const FeaturedCars = () => {
+  const { data } = useGetCarsQuery(undefined);
+  const cars = data?.data;
   return (
     <section className="mt-5 md:py-10 ">
       <Heading
@@ -26,7 +29,7 @@ const FeaturedCars = () => {
         </div>
 
         <div className=" grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5 ">
-          {cars.slice(0, 6).map((car, index) => {
+          {cars?.slice(0, 6).map((car, index) => {
             return <PrimaryCarCard car={car as TCar} key={index} />;
           })}
         </div>

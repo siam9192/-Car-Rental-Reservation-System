@@ -14,11 +14,11 @@ type TCarReturnCard = {
 const PaymentCard = ({ booking }: TCarReturnCard) => {
   const car = booking.car;
   const totalTime =
-    (new Date(booking.endTime).valueOf() - new Date(booking.startTime).valueOf()) /
+    (new Date(booking.endTime).valueOf() -
+      new Date(booking.startTime).valueOf()) /
     1000 /
     60 /
     60;
-  
 
   const [returnCar, { isLoading }] = useReturnCarMutation();
   const handelCarReturn = async () => {
@@ -74,7 +74,7 @@ const PaymentCard = ({ booking }: TCarReturnCard) => {
           onConfirm={handelCarReturn}
         >
           <button className="px-4 py-2  bg-secondary-color text-white rounded-full">
-           Pay Now
+            Pay Now
           </button>
         </AlertModal>
         <div>

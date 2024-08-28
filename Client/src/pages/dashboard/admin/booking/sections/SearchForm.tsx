@@ -39,25 +39,23 @@ const SearchForm = () => {
   }, []);
 
   const location = useLocation();
-  const navigate = useNavigate()
- 
-  const handelSearch = (name:string)=>{
-   return (value:string)=>{
-    const searchParams = new URLSearchParams(location.search)
-    
-     searchParams.delete(name)
-     if(value){
-    
-      searchParams.append(name,value)
-    }
-  
-      navigate(`/dashboard/booking?${searchParams.toString()}`)
-   }
-   
-  }
+  const navigate = useNavigate();
+
+  const handelSearch = (name: string) => {
+    return (value: string) => {
+      const searchParams = new URLSearchParams(location.search);
+
+      searchParams.delete(name);
+      if (value) {
+        searchParams.append(name, value);
+      }
+
+      navigate(`/dashboard/booking?${searchParams.toString()}`);
+    };
+  };
   return (
     <div className="mt-5 grid md:grid-cols-3 lg:grid-cols-4 gap-5 p-5 md:p-10 bg-white dark:bg-dark-light-secondary shadow rounded-lg ">
-      <Select onChange={handelSearch('location')}  options={locationOptions} />
+      <Select onChange={handelSearch('location')} options={locationOptions} />
       <Select onChange={handelSearch('brand')} options={brandOptions} />
       <Select onChange={handelSearch('type')} options={carTypeOptions} />
 

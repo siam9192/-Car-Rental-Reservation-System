@@ -28,10 +28,7 @@ const bookingManagementApi = baseApi.injectEndpoints({
       providesTags: ['booking'],
     }),
   }),
-  
 });
 
-export const {
-useGetMyBookingsQuery,
-useGetYetToPaymentBookingsQuery
-} = bookingManagementApi;
+export const { useGetMyBookingsQuery, useGetYetToPaymentBookingsQuery } =
+  bookingManagementApi;

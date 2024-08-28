@@ -12,36 +12,39 @@ import { useLocation } from 'react-router-dom';
 
 const CarListing = () => {
   const [viewType, setViewType] = useState<TViewType>('grid');
-  const location = useLocation()
+  const location = useLocation();
 
-  
-  const searchParams = new URLSearchParams(location.search)
-  const params:TParam[] = []
-  
-  const keys = ['searchTerm','brand','type','minPrice','maxPrice','location']
- 
-  keys.forEach(key=>{
-    const value = searchParams.get(key)
-   if(value){
-    params.push({name:key,value})
-   }
-   
-  })
+  const searchParams = new URLSearchParams(location.search);
+  const params: TParam[] = [];
 
-  const { data, refetch,isLoading: carsLoading } = useGetCarsQuery(params);
+  const keys = [
+    'searchTerm',
+    'brand',
+    'type',
+    'minPrice',
+    'maxPrice',
+    'location',
+  ];
+
+  keys.forEach((key) => {
+    const value = searchParams.get(key);
+    if (value) {
+      params.push({ name: key, value });
+    }
+  });
+
+  const { data, refetch, isLoading: carsLoading } = useGetCarsQuery(params);
   const cars = data?.data;
 
-  useEffect(()=>{
-     refetch()
-     window.scrollTo(0, 0);
-  },[location.search])
-
+  useEffect(() => {
+    refetch();
+    window.scrollTo(0, 0);
+  }, [location.search]);
 
   const handelSetViewType = (type: TViewType) => {
     setViewType(type);
   };
- 
-  
+
   return (
     <div className="bg-gray-primary dark:bg-dark-light-primary min-h-[90vh] py-5 relative overflow-hidden">
       <Container>
@@ -61,7 +64,9 @@ const CarListing = () => {
           </div>
         ) : (
           <div className="mt-10 flex items-center justify-center">
-            <h1 className="mt-32 text-3xl md:text-4xl text-slate-100">No Results Found</h1>
+            <h1 className="mt-32 text-3xl md:text-4xl text-slate-100">
+              No Results Found
+            </h1>
           </div>
         )}
         {cars?.length && (

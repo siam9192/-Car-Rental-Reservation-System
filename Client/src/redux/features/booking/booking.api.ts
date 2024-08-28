@@ -35,7 +35,6 @@ const bookingApi = baseApi.injectEndpoints({
       },
       providesTags: ['booking'],
     }),
-   
 
     getBooking: builder.query({
       query: (id) => ({

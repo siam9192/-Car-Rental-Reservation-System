@@ -8,17 +8,22 @@ const bookingApi = baseApi.injectEndpoints({
         url: `admin/overview`,
         method: 'GET',
       }),
-      transformResponse: (response: TResponseRedux<{users:number,booking:number,revenue:number,availableCars:number,recentBookings:TBooking[]}>) => {
+      transformResponse: (
+        response: TResponseRedux<{
+          users: number;
+          booking: number;
+          revenue: number;
+          availableCars: number;
+          recentBookings: TBooking[];
+        }>
+      ) => {
         return {
           data: response.data,
         };
       },
-      providesTags: ['booking','user','car'],
+      providesTags: ['booking', 'user', 'car'],
     }),
-  
   }),
 });
 
-export const {
- useGetAdminOverviewDataQuery
-} = bookingApi;
+export const { useGetAdminOverviewDataQuery } = bookingApi;

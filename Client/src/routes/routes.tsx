@@ -12,11 +12,15 @@ import UpdateCar from '../pages/dashboard/admin/UpdateCar';
 import PrivateRoute from '../ProtectedRoute/PrivateRoute';
 import AuthRouteProtector from '../ProtectedRoute/AuthRouteProtector';
 import { userPaths } from './user.routes';
+import TermsAndConditions from '../pages/termsAndConditions/TermsAndConditions';
+import NotFound from '../pages/error/NotFound';
+import About from '../pages/about/About';
 
 const routes = createBrowserRouter([
   {
     path: '/',
     element: <App />,
+    errorElement: <NotFound />,
     children: [
       {
         path: '/',
@@ -31,18 +35,42 @@ const routes = createBrowserRouter([
         element: <CarDetails />,
       },
       {
+        path: '/about-us',
+        element: <About />,
+      },
+      {
         path: '/auth/sign-up',
-        element: <AuthRouteProtector><SignUp /></AuthRouteProtector>,
+        element: (
+          <AuthRouteProtector>
+            <SignUp />
+          </AuthRouteProtector>
+        ),
       },
       {
         path: '/auth/login',
-        element: <AuthRouteProtector><Login /></AuthRouteProtector>,
+        element: (
+          <AuthRouteProtector>
+            <Login />
+          </AuthRouteProtector>
+        ),
+      },
+      {
+        path: '/terms&conditions',
+        element: (
+          <AuthRouteProtector>
+            <TermsAndConditions />
+          </AuthRouteProtector>
+        ),
       },
     ],
   },
   {
     path: '/dashboard/admin',
-    element: <PrivateRoute roles={["admin"]}><DashboardLayout /></PrivateRoute>,
+    element: (
+      <PrivateRoute roles={['admin']}>
+        <DashboardLayout />
+      </PrivateRoute>
+    ),
     children: [
       ...routeGenerator(adminPaths),
       {
@@ -53,11 +81,12 @@ const routes = createBrowserRouter([
   },
   {
     path: '/dashboard',
-    element: <PrivateRoute roles={['user']}><DashboardLayout /></PrivateRoute>,
-    children: [
-      ...routeGenerator(userPaths),
-
-    ],
+    element: (
+      <PrivateRoute roles={['user']}>
+        <DashboardLayout />
+      </PrivateRoute>
+    ),
+    children: [...routeGenerator(userPaths)],
   },
 ]);
 

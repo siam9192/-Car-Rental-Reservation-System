@@ -23,7 +23,7 @@ const authApi = baseApi.injectEndpoints({
         url: '/auth/get-me',
         method: 'GET',
       }),
-      providesTags:['profile'],
+      providesTags: ['profile'],
       transformResponse: (response: TResponseRedux<TUser>) => {
         return {
           data: response.data,
@@ -36,9 +36,14 @@ const authApi = baseApi.injectEndpoints({
         method: 'PUT',
         body: data,
       }),
-      invalidatesTags:['profile']
+      invalidatesTags: ['profile'],
     }),
   }),
 });
 
-export const { useGetMeQuery, useSignupMutation, useLoginMutation,useUpdateProfileMutation } = authApi;
+export const {
+  useGetMeQuery,
+  useSignupMutation,
+  useLoginMutation,
+  useUpdateProfileMutation,
+} = authApi;

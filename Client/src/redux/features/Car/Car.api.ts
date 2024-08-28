@@ -5,7 +5,7 @@ import { baseApi } from '../baseApi/base.api';
 const carApi = baseApi.injectEndpoints({
   endpoints: (builder) => ({
     getCars: builder.query({
-      query: (params:TParam[]|undefined) => {
+      query: (params: TParam[] | undefined) => {
         if (typeof params === undefined) {
           params = [];
         }
@@ -18,9 +18,9 @@ const carApi = baseApi.injectEndpoints({
         return {
           url: `cars?${searchParam.toString()}`,
           method: 'GET',
-        }
+        };
       },
- transformResponse: (response: TResponseRedux<TCar[]>) => {
+      transformResponse: (response: TResponseRedux<TCar[]>) => {
         return {
           data: response.data,
         };

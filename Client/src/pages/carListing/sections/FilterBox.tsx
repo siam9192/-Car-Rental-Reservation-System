@@ -32,35 +32,33 @@ const FilterBox = ({ handelSetViewType: setType }: TFilterBoxProps) => {
     setViewType(type);
   };
   const location = useLocation();
-  const navigate = useNavigate()
- 
-  const handelSearch = (name:string)=>{
-   return (value:string)=>{
-    const searchParams = new URLSearchParams(location.search)
-  
-     searchParams.delete(name)
-     if(value){
-    
-      searchParams.append(name,value)
-    }
-  
-      navigate(`/car-listing?${searchParams.toString()}`)
-   }
-   
-  }
+  const navigate = useNavigate();
 
-  const handelKeywordSearch = (e:KeyboardEvent<HTMLInputElement>)=>{
-    const target = e.currentTarget 
-   if(e.key === 'Enter'){
-    handelSearch('searchTerm')(target.value)
-   }
-  }
+  const handelSearch = (name: string) => {
+    return (value: string) => {
+      const searchParams = new URLSearchParams(location.search);
+
+      searchParams.delete(name);
+      if (value) {
+        searchParams.append(name, value);
+      }
+
+      navigate(`/car-listing?${searchParams.toString()}`);
+    };
+  };
+
+  const handelKeywordSearch = (e: KeyboardEvent<HTMLInputElement>) => {
+    const target = e.currentTarget;
+    if (e.key === 'Enter') {
+      handelSearch('searchTerm')(target.value);
+    }
+  };
   return (
     <div className=" flex  flex-col md:flex-row md:justify-between md:items-center gap-2 md:gap-0 py-10">
       <div className=" flex items-center gap-2  w-10/12 md:w-1/2 lg:w-1/3 bg-white rounded-full p-2 border ">
         <LuSearch />
         <input
-         onKeyDown={handelKeywordSearch}
+          onKeyDown={handelKeywordSearch}
           type="text"
           className="w-full border-none  outline-none"
           placeholder="Search keyword"
@@ -79,9 +77,8 @@ const FilterBox = ({ handelSetViewType: setType }: TFilterBoxProps) => {
         >
           <BiSolidGridAlt />
         </button>
-        <FilterBar search = {handelSearch}/>
+        <FilterBar search={handelSearch} />
       </div>
-    
     </div>
   );
 };

@@ -1,4 +1,4 @@
-import { useGetMyBookingsQuery } from "../../../../../redux/features/user/bookingManagement";
+import { useGetMyBookingsQuery } from '../../../../../redux/features/user/bookingManagement';
 
 const ManageBookingTable = () => {
   const { data } = useGetMyBookingsQuery(undefined);
@@ -14,10 +14,9 @@ const ManageBookingTable = () => {
     'Payment Status',
     'Action',
   ];
-//   const [approve] = useApproveBookingMutation();
-//   const [cancel] = useCancelBookingMutation();
+  //   const [approve] = useApproveBookingMutation();
+  //   const [cancel] = useCancelBookingMutation();
 
-  
   const handelCancelBooking = (id: string) => {
     // cancel(id);
   };
@@ -64,7 +63,6 @@ const ManageBookingTable = () => {
                       <td className="whitespace-nowrap px-6 py-4 space-x-2 ">
                         {booking.status === 'pending' ? (
                           <>
-                          
                             <button
                               onClick={() => handelCancelBooking(booking._id)}
                               className="px-4 py-2 bg-red-500 text-white"
@@ -73,9 +71,7 @@ const ManageBookingTable = () => {
                             </button>
                           </>
                         ) : (
-                          <button
-                            className="px-4 py-2 bg-secondary-color text-white"
-                          >
+                          <button className="px-4 py-2 bg-secondary-color text-white">
                             Details
                           </button>
                         )}

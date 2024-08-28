@@ -7,12 +7,12 @@ import RecentReview from './sections/RecentReview';
 import { useGetAdminOverviewDataQuery } from '../../../../redux/features/admin/admin.overview';
 
 const AdminOverview = () => {
-  const {data} = useGetAdminOverviewDataQuery(undefined)
-  const overview = data?.data
+  const { data } = useGetAdminOverviewDataQuery(undefined);
+  const overview = data?.data;
   const overviewData = [
     {
       name: 'Users',
-      value: overview?.users||0,
+      value: overview?.users || 0,
       icon: (
         <svg
           xmlns="http://www.w3.org/2000/svg"
@@ -32,7 +32,7 @@ const AdminOverview = () => {
     },
     {
       name: 'Bookings',
-      value: overview?.booking||0,
+      value: overview?.booking || 0,
       icon: (
         <svg
           xmlns="http://www.w3.org/2000/svg"
@@ -52,7 +52,7 @@ const AdminOverview = () => {
     },
     {
       name: 'Revenue',
-      value: `$${overview?.revenue||0}`,
+      value: `$${overview?.revenue || 0}`,
       icon: (
         <svg
           xmlns="http://www.w3.org/2000/svg"
@@ -72,7 +72,7 @@ const AdminOverview = () => {
     },
     {
       name: 'Available Cars',
-      value: overview?.availableCars||0,
+      value: overview?.availableCars || 0,
       icon: (
         <svg
           xmlns="http://www.w3.org/2000/svg"
@@ -91,7 +91,7 @@ const AdminOverview = () => {
       ),
     },
   ];
-  
+
   return (
     <div>
       <h1 className="text-3xl font-bold dark:text-slate-50">Overview</h1>
@@ -102,7 +102,7 @@ const AdminOverview = () => {
         })}
       </div>
       <div className="mt-10 grid grid-cols-1 lg:grid-cols-2 gap-5 min-h-[60vh]">
-        <RecentBooking bookings = {overview?.recentBookings||[]}/>
+        <RecentBooking bookings={overview?.recentBookings || []} />
         <RecentReview />
       </div>
     </div>

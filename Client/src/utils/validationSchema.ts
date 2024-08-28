@@ -21,9 +21,33 @@ export const bookingValidationSchema = z.object({
     .min(1, 'Driving License is required'),
 });
 
-
 export const updateProfileValidationSchema = z.object({
-   name: z.string({ required_error: 'Name  is required' }).min(3,'Name must be at least 3 character'),
-   phone: z.string().optional(),
-   address: z.string().optional(),
+  name: z
+    .string({ required_error: 'Name  is required' })
+    .min(3, 'Name must be at least 3 character'),
+  phone: z.string().optional(),
+  address: z.string().optional(),
+});
+
+export const signUpValidationSchema = z.object({
+  name: z
+    .string({ required_error: 'Name is required' })
+    .min(3, { message: 'Name must be at least 3 character' }),
+  email: z
+    .string({ required_error: 'Email is required' })
+    .email('Enter valid email'),
+  phone: z.string().optional(),
+  password: z
+    .string({ required_error: 'Password is required' })
+    .min(6, { message: 'Password must be at least 6 character' }),
+  confirmPassword: z
+    .string({ required_error: 'Confirm Password is required' })
+    .min(6, { message: 'Confirm Password must be at least 6 character' }),
+});
+
+export const signInValidationSchema = z.object({
+  email: z
+    .string({ required_error: 'Email is required' })
+    .email('Enter valid email'),
+  password: z.string({ required_error: 'Password is required' }),
 });

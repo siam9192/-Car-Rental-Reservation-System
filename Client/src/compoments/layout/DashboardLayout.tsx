@@ -29,10 +29,9 @@ const DashboardLayout = () => {
         <DashboardSidebar />
       </div>
       <section className=" col-span-12 lg:col-span-10 h-[100vh] bg-gray-primary dark:bg-dark-light-primary p-2 lg:px-10 pt-20 lg:pt-32 pb-10 overflow-y-auto relative">
-        <DashboardHeader/>
+        <DashboardHeader />
         <Outlet />
       </section>
-      
     </div>
   );
 };

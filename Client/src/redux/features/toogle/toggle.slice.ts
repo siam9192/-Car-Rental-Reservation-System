@@ -2,13 +2,13 @@ import { createSlice } from '@reduxjs/toolkit';
 
 type TInitialState = {
   isSidebarOpen: boolean;
-  isDashboardSidebarOpen:boolean
-  isLogging:boolean
+  isDashboardSidebarOpen: boolean;
+  isLogging: boolean;
 };
 const initialState: TInitialState = {
   isSidebarOpen: false,
-  isDashboardSidebarOpen:false,
-  isLogging:false
+  isDashboardSidebarOpen: false,
+  isLogging: false,
 };
 
 const toggleSlice = createSlice({
@@ -21,12 +21,13 @@ const toggleSlice = createSlice({
     toggleDashboardSidebar: (state) => {
       state.isDashboardSidebarOpen = !state.isDashboardSidebarOpen;
     },
-    toggleLogging:(state)=>{
-      state.isLogging = !state.isLogging
-    }
+    toggleLogging: (state) => {
+      state.isLogging = !state.isLogging;
+    },
   },
 });
 
-export const { toggleSidebar,toggleDashboardSidebar,toggleLogging} = toggleSlice.actions;
+export const { toggleSidebar, toggleDashboardSidebar, toggleLogging } =
+  toggleSlice.actions;
 
 export default toggleSlice.reducer;

@@ -11,7 +11,7 @@ export const navRoutes = [
   },
   {
     display: 'About',
-    path: '/about',
+    path: '/about-us',
   },
   {
     display: 'Dashboard',

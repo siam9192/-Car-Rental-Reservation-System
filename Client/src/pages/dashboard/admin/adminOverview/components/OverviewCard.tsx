@@ -1,7 +1,6 @@
 import OverViewCardContainer from './OverviewCardContainer';
 
 const OverviewCard = ({ data }: { data: any }) => {
-
   return (
     <OverViewCardContainer>
       <div className="">

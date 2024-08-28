@@ -10,26 +10,25 @@ import { userPaths } from '../routes/user.routes';
 const DashboardSidebar = () => {
   const { pathname } = useLocation();
   const [active, setActive] = useState(0);
-  const user = useAppSelector(state=>state.auth.user)
-  let sidebarItems:any;
-  switch(user?.role){
+  const user = useAppSelector((state) => state.auth.user);
+  let sidebarItems: any;
+  switch (user?.role) {
     case 'admin':
       sidebarItems = sidebarItemsGenerator(adminPaths);
-      break
+      break;
     case 'user':
-      sidebarItems = sidebarItemsGenerator(userPaths)
+      sidebarItems = sidebarItemsGenerator(userPaths);
   }
-  
 
   const handelSetActive = (value: number) => {
     setActive(value);
   };
- 
+
   return (
     <section className="h-[100vh] w-full bg-white dark:bg-dark-light-secondary pt-32 px-5 shadow">
       <div className=" flex flex-col justify-between h-full ">
         <div className="mt-10 space-y-5">
-          {sidebarItems.map((item:any, index:number) => {
+          {sidebarItems.map((item: any, index: number) => {
             return (
               <Link
                 onClick={() => handelSetActive(index)}
@@ -54,7 +53,7 @@ const DashboardSidebar = () => {
         </div>
         <div>
           <div className="mb-20 space-y-5">
-           <LogoutButton/>
+            <LogoutButton />
           </div>
         </div>
       </div>

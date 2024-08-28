@@ -12,12 +12,12 @@ import { navRoutes } from '../../utils/constant';
 const Header = () => {
   const { pathname } = useLocation();
   const dispatch = useAppDispatch();
-  const token = useAppSelector(state=>state.auth.token)
+  const token = useAppSelector((state) => state.auth.token);
   const openSidebar = () => {
     dispatch(toggleSidebar());
   };
   return (
-    <header className="py-5 md:py-8">
+    <header className="py-5 md:py-8 sticky top-0 bg-white  dark:bg-black z-40">
       <Container>
         <div className="flex justify-between items-center">
           {/* Logo */}
@@ -41,32 +41,29 @@ const Header = () => {
           {/* Menu button */}
 
           <div className="flex items-center gap-3">
-         
-
-       {
-        token ?
-        <div className="pl-4 md:flex items-center gap-2 rounded-full border bg-blue-100 hidden md:block">
-        <h2 className="font-bold uppercase">SIAM</h2>
-        <img
-          className="size-10 rounded-full"
-          src="https://res.cloudinary.com/ddlfpv4gl/image/upload/v1724086523/images/ahlrweixpa9dil5lw3g3.png"
-          alt=""
-        />
-      </div>
-        :
-        <>
-        <Link to={'/auth/login'}>
-          <button className=" bg-black dark:bg-white text-white dark:text-black  text-wrap px-4 py-2 rounded-full  hidden md:block">
-            Login
-          </button>
-        </Link>
-        <Link to={'/auth/sign-up'}>
-          <button className=" bg-primary-color text-wrap px-4 py-2 rounded-full text-white hidden md:block">
-            SignUp
-          </button>
-        </Link>
-        </>
-       }
+            {token ? (
+              <div className="pl-4 md:flex items-center gap-2 rounded-full border bg-blue-100 hidden md:block">
+                <h2 className="font-bold uppercase">SIAM</h2>
+                <img
+                  className="size-10 rounded-full"
+                  src="https://res.cloudinary.com/ddlfpv4gl/image/upload/v1724086523/images/ahlrweixpa9dil5lw3g3.png"
+                  alt=""
+                />
+              </div>
+            ) : (
+              <>
+                <Link to={'/auth/login'}>
+                  <button className=" bg-black dark:bg-white text-white dark:text-black  text-wrap px-4 py-2 rounded-full  hidden md:block">
+                    Login
+                  </button>
+                </Link>
+                <Link to={'/auth/sign-up'}>
+                  <button className=" bg-primary-color text-wrap px-4 py-2 rounded-full text-white hidden md:block">
+                    SignUp
+                  </button>
+                </Link>
+              </>
+            )}
             <ToggleMode />
             <button
               onClick={openSidebar}

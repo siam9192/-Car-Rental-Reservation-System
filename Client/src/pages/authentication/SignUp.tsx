@@ -6,29 +6,17 @@ import { z } from 'zod';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { useSignupMutation } from '../../redux/features/auth/auth.api';
 import { toast } from 'sonner';
-import { useState } from 'react';
-
-const signUpSchema = z.object({
-  name: z
-    .string({ required_error: 'Name is required' })
-    .min(3, { message: 'Name must be at least 3 character' }),
-  email: z
-    .string({ required_error: 'Email is required' })
-    .email('Enter valid email'),
-  password: z
-    .string({ required_error: 'Password is required' })
-    .min(6, { message: 'Password must be at least 6 character' }),
-  confirmPassword: z
-    .string({ required_error: 'Confirm Password is required' })
-    .min(6, { message: 'Confirm Password must be at least 6 character' }),
-});
+import { ChangeEvent, useState } from 'react';
+import { signUpValidationSchema } from '../../utils/validationSchema';
 
 const SignUp = () => {
   const [error, setError] = useState('');
-
+  const [agreeTermAndConditions, setAgreeStatus] = useState(false);
   const [signUp] = useSignupMutation();
   const onSubmit = async (values: any) => {
-    console.log(values);
+    if (!agreeTermAndConditions) {
+      return setError('Please read Agree with term and conditions ');
+    }
     if (values.password !== values.confirmPassword) {
       return setError("Both password doesn't match ");
     }
@@ -46,6 +34,7 @@ const SignUp = () => {
     }
     toast.dismiss(id);
   };
+
   return (
     <div className="">
       <div className="lg:grid grid-cols-2">
@@ -56,10 +45,14 @@ const SignUp = () => {
               Welcome! Create Your New Account{' '}
             </p>
           </div>
-          <Form onSubmit={onSubmit} resolver={zodResolver(signUpSchema)}>
+          <Form
+            onSubmit={onSubmit}
+            resolver={zodResolver(signUpValidationSchema)}
+          >
             <div className="space-y-5">
               <FormInput name="name" label="Name" type="text" />
               <FormInput name="email" label="Email" type="text" />
+              <FormInput name="phone" label="Phone (optional)" type="text" />
               <FormInput name="password" label="Password" type="text" />
               <FormInput
                 name="confirmPassword"
@@ -67,13 +60,31 @@ const SignUp = () => {
                 type="text"
               />
             </div>
+            <div className="mt-5 flex items-center gap-1">
+              <input
+                onChange={(e) => setAgreeStatus(e.currentTarget.checked)}
+                type="checkbox"
+                name=""
+                id="term"
+                className="size-5 accent-secondary-color"
+              />{' '}
+              <Link
+                to={'/terms&conditions'}
+                className="text-black dark:text-slate-200 hover:text-blue-700 dark:hover:text-blue-700"
+              >
+                I agree with terms & conditions{' '}
+              </Link>
+            </div>
             <button
               type="submit"
-              className="w-full py-3 bg-secondary-color text-white font-medium mt-10"
+              disabled={!agreeTermAndConditions}
+              className="w-full py-3 bg-secondary-color disabled:bg-gray-400 text-white font-medium mt-10"
             >
               Create Account
             </button>
-            {error && <span className=" text-red-700 mt-1">{error}</span>}
+            {error && (
+              <p className=" text-red-600 dark:text-red-700 mt-1">{error}</p>
+            )}
             <div className="mt-2">
               <p className="dark:text-slate-200 ">
                 Already have an account ?{' '}

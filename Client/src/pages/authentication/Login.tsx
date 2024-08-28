@@ -12,21 +12,14 @@ import { setUser } from '../../redux/features/auth/auth.slice';
 import { decodeToken } from '../../utils/fun';
 import { useAppDispatch } from '../../redux/hook';
 import { toggleLogging } from '../../redux/features/toogle/toggle.slice';
+import { signInValidationSchema } from '../../utils/validationSchema';
 const Login = () => {
   const navigate = useNavigate();
   const { state } = useLocation();
   const dispatch = useAppDispatch();
 
-  const signUpSchema = z.object({
-    email: z
-      .string({ required_error: 'Email is required' })
-      .email('Enter valid email'),
-    password: z
-      .string({ required_error: 'Password is required' })
-      .min(6, { message: 'Password must be at least 6 character' }),
-  });
-
   const [error, setError] = useState('');
+  const [showPassword, setShowPasswordStatus] = useState(false);
 
   const [login, { isLoading }] = useLoginMutation();
   const onSubmit = async (values: any) => {
@@ -47,18 +40,18 @@ const Login = () => {
         exp: decode.exp,
         iat: decode.iat,
       };
-      dispatch(toggleLogging())
+      dispatch(toggleLogging());
       dispatch(setUser({ user, token: data.token }));
       if (state) {
         navigate(state);
       } else {
         navigate('/dashboard');
       }
-      dispatch(toggleLogging())
+      dispatch(toggleLogging());
     }
   };
   return (
-    <div className="h-[100vh]">
+    <div className="h-[100vh] overflow-hidden">
       <div className="lg:grid grid-cols-2">
         <div className="px-2 py-32 md:px-20 md:py-32 ">
           <div className="flex flex-col gap-2 justify-center items-center">
@@ -67,14 +60,33 @@ const Login = () => {
               Welcome! Again Login Your Account{' '}
             </p>
           </div>
-          <Form onSubmit={onSubmit} resolver={zodResolver(signUpSchema)}>
+          <Form
+            onSubmit={onSubmit}
+            resolver={zodResolver(signInValidationSchema)}
+          >
             <div className="space-y-5">
               <FormInput name="email" label="Email" type="text" />
-              <FormInput name="password" label="Password" type="password" />
+              <FormInput
+                name="password"
+                label="Password"
+                type={showPassword ? 'text' : 'password'}
+              />
+            </div>
+            <div className="mt-5 flex items-center gap-1">
+              <input
+                onChange={(e) => setShowPasswordStatus(e.currentTarget.checked)}
+                type="checkbox"
+                name=""
+                id="term"
+                className="size-5 accent-secondary-color"
+              />{' '}
+              <label className="text-black dark:text-slate-200 hover:text-blue-700 dark:hover:text-blue-700">
+                Show Password
+              </label>
             </div>
             <button
               type="submit"
-              className="w-full py-3 bg-secondary-color text-white font-medium mt-10"
+              className="w-full py-3 bg-secondary-color text-white font-medium mt-5"
             >
               Login
             </button>
@@ -91,8 +103,8 @@ const Login = () => {
         </div>
         <div className="hidden lg:block">
           <img
-            className="w-full h-full"
-            src="https://vidtube-5rhnp42f6-siam-hasans-projects.vercel.app/images/auth.jpg"
+            className="w-full h-[100vh]"
+            src="https://i.ibb.co/5RxCbN6/807b5de7f0bfaf58f8ca93fa73d51527.jpg"
             alt=""
           />
         </div>
