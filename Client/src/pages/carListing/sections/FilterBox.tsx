@@ -1,6 +1,5 @@
 import React, { KeyboardEvent, useEffect, useState } from 'react';
 import { LuSearch } from 'react-icons/lu';
-import { IoFilter } from 'react-icons/io5';
 import { FaListUl } from 'react-icons/fa';
 import { BiSolidGridAlt } from 'react-icons/bi';
 import FilterBar from '../FilterBar';
@@ -23,9 +22,13 @@ const FilterBox = ({ handelSetViewType: setType }: TFilterBoxProps) => {
     }
   }, []);
 
+
+
   useEffect(() => {
     setType(viewType);
   }, [viewType]);
+
+
 
   const handelSetViewType = (type: TViewType) => {
     localStorage.setItem('viewType', type);
@@ -37,7 +40,7 @@ const FilterBox = ({ handelSetViewType: setType }: TFilterBoxProps) => {
   const handelSearch = (name: string) => {
     return (value: string) => {
       const searchParams = new URLSearchParams(location.search);
-
+    
       searchParams.delete(name);
       if (value) {
         searchParams.append(name, value);
@@ -53,6 +56,8 @@ const FilterBox = ({ handelSetViewType: setType }: TFilterBoxProps) => {
       handelSearch('searchTerm')(target.value);
     }
   };
+
+
   return (
     <div className=" flex  flex-col md:flex-row md:justify-between md:items-center gap-2 md:gap-0 py-10">
       <div className=" flex items-center gap-2  w-10/12 md:w-1/2 lg:w-1/3 bg-white rounded-full p-2 border ">

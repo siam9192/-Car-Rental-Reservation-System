@@ -12,12 +12,14 @@ import { navRoutes } from '../../utils/constant';
 const Header = () => {
   const { pathname } = useLocation();
   const dispatch = useAppDispatch();
-  const token = useAppSelector((state) => state.auth.token);
+  const authData = useAppSelector((state) => state.auth);
+  const token = authData.token
+  const user = authData.user
   const openSidebar = () => {
     dispatch(toggleSidebar());
   };
   return (
-    <header className="py-5 md:py-8 sticky top-0 bg-white  dark:bg-black z-40">
+    <header className="py-5 md:py-8">
       <Container>
         <div className="flex justify-between items-center">
           {/* Logo */}
@@ -36,19 +38,28 @@ const Header = () => {
                 </Link>
               );
             })}
+            <Link
+                  to={user?.role === 'admin'?'/dashboard/admin':'dashboard'}
+                  className= "text-[1.2rem] hover:text-primary-color font-medium text-gray-800 dark:text-slate-200"
+                >
+                  Dashboard
+                </Link>
           </nav>
 
           {/* Menu button */}
 
           <div className="flex items-center gap-3">
             {token ? (
-              <div className="pl-4 md:flex items-center gap-2 rounded-full border bg-blue-100 hidden md:block">
-                <h2 className="font-bold uppercase">SIAM</h2>
-                <img
-                  className="size-10 rounded-full"
-                  src="https://res.cloudinary.com/ddlfpv4gl/image/upload/v1724086523/images/ahlrweixpa9dil5lw3g3.png"
-                  alt=""
-                />
+              // <div className="pl-4 md:flex items-center gap-2 rounded-full border bg-blue-100 hidden md:block">
+              //   <h2 className="font-bold uppercase">SIAM</h2>
+              //   <img
+              //     className="size-10 rounded-full"
+              //     src='https://media.lordicon.com/icons/wired/flat/21-avatar.gif'
+              //     alt=""
+              //   />
+              // </div>
+              <div>
+
               </div>
             ) : (
               <>

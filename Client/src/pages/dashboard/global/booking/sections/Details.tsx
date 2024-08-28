@@ -167,7 +167,7 @@ const Details = ({ id }: TDetails) => {
                     </div>
                   </div>
                 </div>
-                <BookingForm car={car!} />
+                <BookingForm car={car!}  />
               </div>
             </div>
           )}

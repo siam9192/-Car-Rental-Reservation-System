@@ -8,11 +8,12 @@ import PaginationPrimary from '../../compoments/pagination/PaginationPrimary';
 import FilterBox, { TViewType } from './sections/FilterBox';
 import { useEffect, useState } from 'react';
 import { useGetCarsQuery } from '../../redux/features/Car/Car.api';
-import { useLocation } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
 
 const CarListing = () => {
   const [viewType, setViewType] = useState<TViewType>('grid');
   const location = useLocation();
+  const navigate = useNavigate()
 
   const searchParams = new URLSearchParams(location.search);
   const params: TParam[] = [];
@@ -21,9 +22,9 @@ const CarListing = () => {
     'searchTerm',
     'brand',
     'type',
-    'minPrice',
-    'maxPrice',
+    'price',
     'location',
+    'page',
   ];
 
   keys.forEach((key) => {
@@ -35,6 +36,7 @@ const CarListing = () => {
 
   const { data, refetch, isLoading: carsLoading } = useGetCarsQuery(params);
   const cars = data?.data;
+ 
 
   useEffect(() => {
     refetch();
@@ -44,6 +46,12 @@ const CarListing = () => {
   const handelSetViewType = (type: TViewType) => {
     setViewType(type);
   };
+
+  const handelPageChange = (page:number)=>{
+     searchParams.delete('page')
+     searchParams.append('page',page.toString())
+    navigate(`/car-listing?${searchParams.toString()}`)
+  } 
 
   return (
     <div className="bg-gray-primary dark:bg-dark-light-primary min-h-[90vh] py-5 relative overflow-hidden">
@@ -71,7 +79,7 @@ const CarListing = () => {
         )}
         {cars?.length && (
           <div className="mt-20 flex justify-center">
-            <PaginationPrimary page={5} />
+            <PaginationPrimary onChange={handelPageChange} page={2} />
           </div>
         )}
       </Container>

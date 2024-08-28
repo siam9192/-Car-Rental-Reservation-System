@@ -1,9 +1,15 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 type TPaginationPrimaryProps = {
   page: number;
+  onChange:(page:number)=>void | any
 };
-const PaginationPrimary = ({ page }: TPaginationPrimaryProps) => {
+const PaginationPrimary = ({ page,onChange }: TPaginationPrimaryProps) => {
   const [pageNumber, setPageNumber] = useState(0);
+
+  useEffect(()=>{
+    onChange(pageNumber+1)
+  },[pageNumber])
+
   // Adjust the page numbers the way you want
   const updatePageNumber = (num: number) => {
     if (num > page - 1 || 0 > num) {

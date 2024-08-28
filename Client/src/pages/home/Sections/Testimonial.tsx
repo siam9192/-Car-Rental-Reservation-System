@@ -6,6 +6,7 @@ const Testimonial = () => {
   const array = [
     {
       name: 'John Doe',
+      image:'https://aximo-react.vercel.app/assets/team1-DmWE10zh.png',
       designation: 'Student',
       testimonialDescription:
         'Being a student, Taskiee has been my go-to tool for organizing assignments and study schedules. The visual timeline and reminder features have helped me stay on top of my coursework',
@@ -13,6 +14,7 @@ const Testimonial = () => {
     },
     {
       name: 'Jane Doe',
+      image:'https://aximo-react.vercel.app/assets/team2-CCsDsUp2.png',
       designation: 'Freelancer',
       testimonialDescription:
         'Taskiee has been a game-changer for my freelance work. It allows me to effortlessly prioritize tasks, set realistic deadlines, and maintain a healthy work-life balance',
@@ -20,6 +22,7 @@ const Testimonial = () => {
     },
     {
       name: 'Shiyam Sarker',
+      image:'https://aximo-react.vercel.app/assets/team3-Dq8iIK3F.png',
       designation: 'Entrepreneur',
       testimonialDescription:
         "Taskiee's collaborative features have been instrumental in streamlining tasks for my startup. The ability to share projects and track progress with the team has enhanced our efficiency.",
@@ -27,39 +30,12 @@ const Testimonial = () => {
     },
     {
       name: 'Bob Smith',
+      image:'https://aximo-react.vercel.app/assets/team4-CN3ED17F.png',
       designation: 'Creative Professional',
       testimonialDescription:
         'As a creative professional, Taskiee has simplified my project management. The clean design and goal tracking feature keep me inspired and organized throughout the creative process.',
       keyWord: 'Child',
-    },
-    {
-      name: 'Eva Williams',
-      designation: 'Remote Worker',
-      testimonialDescription:
-        "Taskiee's mobile app has made remote work a breeze for me. I can seamlessly manage tasks on the go, ensuring that I stay productive regardless of my location.",
-      keyWord: 'Individual',
-    },
-    {
-      name: 'Chris Brown',
-      designation: 'Parent',
-      testimonialDescription:
-        'Managing family schedules is no easy task, but Taskiee has made it seamless. From school activities to household chores, Taskiee keeps our family organized and on track.',
-      keyWord: 'Boy',
-    },
-    {
-      name: 'Olivia Davis',
-      designation: 'Health Professional',
-      testimonialDescription:
-        'In the healthcare field, where time is crucial, Taskiee has become my ally. Its time tracking feature has allowed me to optimize patient care and manage administrative tasks efficiently.',
-      keyWord: 'Girl',
-    },
-    {
-      name: 'Liam Wilson',
-      designation: 'Researcher',
-      testimonialDescription:
-        "Taskiee's analytics feature has proven invaluable in my research endeavors. It provides insightful data on my productivity patterns, helping me refine my workflow and achieve research goals",
-      keyWord: 'Toddler',
-    },
+    }
   ];
 
   const [currentSlider, setCurrentSlider] = useState(0);
@@ -136,7 +112,7 @@ const Testimonial = () => {
                   <a className="inline-flex items-center">
                     <img
                       className="w-12 h-12 rounded-full flex-shrink-0 object-cover object-center"
-                      src={`https://res.cloudinary.com/ddlfpv4gl/image/upload/v1724086523/images/ahlrweixpa9dil5lw3g3.png`}
+                      src={each.image}
                       alt="carousel navigate ui"
                     />
                     <span className="flex-grow flex flex-col pl-4">

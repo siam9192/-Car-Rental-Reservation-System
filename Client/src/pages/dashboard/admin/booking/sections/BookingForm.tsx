@@ -10,15 +10,18 @@ import LoadingModal from '../../../../../compoments/modal/LoadingModal';
 import { TCar } from '../../../../../types';
 import { useGetMeQuery } from '../../../../../redux/features/auth/auth.api';
 import { toast } from 'sonner';
+import { useNavigate } from 'react-router-dom';
 
 type TBooKingFormProps = {
   car: TCar;
 };
-const BookingForm = ({ car }: TBooKingFormProps) => {
+const BookingForm = ({ car}: TBooKingFormProps) => {
   const [error, setError] = useState('');
+  const navigate = useNavigate()
   const [createBooking, { isLoading }] = useCreateBookingMutation();
   const { data } = useGetMeQuery(undefined);
   const user = data?.data;
+
   const onSubmit = async (values: any) => {
     const data: any = {
       carId: car._id,
@@ -40,13 +43,18 @@ const BookingForm = ({ car }: TBooKingFormProps) => {
       data.bookerInfo.nid = values.nid;
     }
 
-    console.log(data);
 
     const res = await createBooking(data);
     if (res?.error || !res?.data) {
       toast.error('Something went wrong', { duration: 3000 });
     } else {
-      toast.success('Booking successful', { duration: 3000 });
+      // toast.success('Booking successful', { duration: 3000 });
+    if(user?.role === 'admin'){
+      navigate(`/dashboard/booking-confirm/${res?.data?.data?._id}`)
+    }
+    else {
+        navigate(`/dashboard/booking-confirm/${res?.data?.data?._id}`)
+    }
     }
   };
 

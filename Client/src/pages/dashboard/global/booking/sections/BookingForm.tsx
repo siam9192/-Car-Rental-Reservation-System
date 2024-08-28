@@ -40,7 +40,7 @@ const BookingForm = ({ car }: TBooKingFormProps) => {
       data.bookerInfo.nid = values.nid;
     }
 
-    console.log(data);
+    
 
     const res = await createBooking(data);
     if (res?.error || !res?.data) {

@@ -14,12 +14,12 @@ const PriceSummery = ({ car }: TCartSummeryProps) => {
           <h6 className="font-medium text-xl">Car rent</h6>
           <h6 className="font-bold text-2xl">${car.pricePerHour}.00</h6>
         </div>
-        <div className="flex justify-between items-center dark:text-slate-50">
+        {/* <div className="flex justify-between items-center dark:text-slate-50">
           <h6 className="font-medium text-xl">VAT</h6>
           <h6 className="font-bold text-2xl">
-            ${(car.pricePerHour / 100) * 2}
+          (5% Included)
           </h6>
-        </div>
+        </div> */}
         <div className="flex justify-between items-center dark:text-slate-50">
           <h6 className="font-medium text-xl">Discount</h6>
           <h6 className="font-bold text-2xl">${0}.00</h6>

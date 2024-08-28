@@ -27,8 +27,23 @@ const bookingManagementApi = baseApi.injectEndpoints({
       },
       providesTags: ['booking'],
     }),
+    paymentRequest: builder.mutation({
+      query: (data) => ({
+        url: 'bookings/payment-request',
+        method: 'POST',
+        body:data
+      }),
+    }),
+    paymentSuccess: builder.mutation({
+      query: (id) => ({
+        url: `bookings/payment-success?id=${id}`,
+        method: 'POST',
+      }),
+    }),
   }),
 });
 
-export const { useGetMyBookingsQuery, useGetYetToPaymentBookingsQuery } =
+
+
+export const { useGetMyBookingsQuery, useGetYetToPaymentBookingsQuery,usePaymentRequestMutation,usePaymentSuccessMutation } =
   bookingManagementApi;

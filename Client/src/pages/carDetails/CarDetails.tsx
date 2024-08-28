@@ -41,7 +41,7 @@ const CarDetails = () => {
             <div className="lg:col-span-8 space-y-10">
               <CarInfo car={car as any} />
               <Description description={car.description} />
-              <Reviews />
+              {/* <Reviews /> */}
             </div>
             <div className="lg:col-span-4 space-y-10">
               {/* <BookingForm /> */}

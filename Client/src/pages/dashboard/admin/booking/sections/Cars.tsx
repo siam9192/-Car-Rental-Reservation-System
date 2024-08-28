@@ -23,6 +23,8 @@ const Cars = ({ setId }: TCarsProps) => {
     }
   });
 
+  
+
   const { data, refetch, isLoading: carsLoading } = useGetCarsQuery(params);
   const cars = data?.data;
 
@@ -35,6 +37,8 @@ const Cars = ({ setId }: TCarsProps) => {
   useEffect(() => {
     refetch();
   }, [location]);
+
+  
 
   return (
     <div className=" col-span-12 lg:col-span-6 space-y-5 max-h-[80vh overflow-y-auto ">

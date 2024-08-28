@@ -8,6 +8,7 @@ import { IoCheckmarkDone, IoStar } from 'react-icons/io5';
 import { TbAirConditioning } from 'react-icons/tb';
 import { LuDollarSign } from 'react-icons/lu';
 import { TCar } from '../../../types';
+import ImageGallery from './ImageGallery';
 
 type TCarInfoProps = {
   car: TCar;
@@ -32,7 +33,7 @@ const CarInfo = ({ car }: TCarInfoProps) => {
         </h5>
       </div>
       <div className="flex md:flex-row flex-col gap-5">
-        <img className="w-full md:w-1/2 " src={car.images[0]} alt="" />
+     <ImageGallery images={car.images}/>
         <div>
           <div className="flex items-center gap-4">
             <div className="w-fit bg-gray-50  flex items-center gap-1 px-2 py-1 border rounded-full dark:text-gray-800">

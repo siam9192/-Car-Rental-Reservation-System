@@ -11,8 +11,8 @@ const MainLayout = () => {
   const { pathname } = useLocation();
   const dispatch = useAppDispatch();
 
-  const headerHiddenPaths = ['/auth/sign-up', '/auth/login'];
-  const footerHiddenPaths = ['/auth/sign-up', '/auth/login'];
+  const headerHiddenPaths = ['/auth/sign-up', '/auth/login','/payment-loading'];
+  const footerHiddenPaths = ['/auth/sign-up', '/auth/login','/payment-loading'];
   const isSidebarOpen = useAppSelector((state) => state.toggle.isSidebarOpen);
 
   // close the sidebar when the path will be change

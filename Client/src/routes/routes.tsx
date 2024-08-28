@@ -15,6 +15,8 @@ import { userPaths } from './user.routes';
 import TermsAndConditions from '../pages/termsAndConditions/TermsAndConditions';
 import NotFound from '../pages/error/NotFound';
 import About from '../pages/about/About';
+import PaymentLoading from '../pages/paymentLoading.tsx/PaymentLoading';
+import BookingConfirm from '../pages/dashboard/global/bookingConfirm/BookingConfirm';
 
 const routes = createBrowserRouter([
   {
@@ -37,6 +39,14 @@ const routes = createBrowserRouter([
       {
         path: '/about-us',
         element: <About />,
+      },
+      {
+        path: '/payment-success',
+        element: <About />,
+      },
+      {
+        path: '/payment-loading',
+        element: <PaymentLoading />,
       },
       {
         path: '/auth/sign-up',
@@ -77,6 +87,10 @@ const routes = createBrowserRouter([
         path: 'update-car/:id',
         element: <UpdateCar />,
       },
+      {
+        path:'booking-confirm/:id',
+        element:<BookingConfirm/>
+      }
     ],
   },
   {
@@ -86,7 +100,10 @@ const routes = createBrowserRouter([
         <DashboardLayout />
       </PrivateRoute>
     ),
-    children: [...routeGenerator(userPaths)],
+    children: [...routeGenerator(userPaths),{
+      path:'booking-confirm/:id',
+      element:<BookingConfirm/>
+    }],
   },
 ]);
 

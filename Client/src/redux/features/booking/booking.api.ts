@@ -38,7 +38,7 @@ const bookingApi = baseApi.injectEndpoints({
 
     getBooking: builder.query({
       query: (id) => ({
-        url: `cars/${id}`,
+        url: `bookings/${id}`,
         method: 'GET',
       }),
       transformResponse: (response: TResponseRedux<TBooking>) => {
@@ -48,6 +48,18 @@ const bookingApi = baseApi.injectEndpoints({
       },
       providesTags: ['car'],
     }),
+    confirmBooking: builder.mutation({
+      query: (id) => ({
+        url: `bookings/confirm/${id}`,
+        method: 'POST',
+      }),
+      transformResponse: (response: TResponseRedux<TBooking>) => {
+        return {
+          data: response.data,
+        };
+      },
+     invalidatesTags:['booking']
+    }),
   }),
 });
 
@@ -55,4 +67,5 @@ export const {
   useCreateBookingMutation,
   useGetBookingQuery,
   useGetBookingsQuery,
+  useConfirmBookingMutation
 } = bookingApi;

@@ -22,7 +22,7 @@ const carApi = baseApi.injectEndpoints({
       },
       transformResponse: (response: TResponseRedux<TCar[]>) => {
         return {
-          data: response.data,
+          data: response.data
         };
       },
       providesTags: ['car'],

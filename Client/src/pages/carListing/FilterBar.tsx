@@ -16,36 +16,24 @@ const FilterBar = ({ search }: { search: any }) => {
   const priceRangeOptions = [
     {
       label: 'Default',
-      value: null,
+      value: '',
     },
     {
       label: '$0-100',
-      value: {
-        min: 0,
-        max: 100,
-      },
+      value: '0-100'
     },
     {
       label: '$101-200',
-      value: {
-        min: 101,
-        max: 200,
-      },
+      value: '101-200'
     },
 
     {
       label: '$201-500',
-      value: {
-        min: 201,
-        max: 500,
-      },
+       value: '201-500'
     },
     {
       label: '$501-1000',
-      value: {
-        min: 101,
-        max: 200,
-      },
+      value: '501-1000'
     },
   ];
   const brandOptions = carBrands.map((item) => ({
@@ -114,13 +102,13 @@ const FilterBar = ({ search }: { search: any }) => {
               Select Price Range
             </h6>
             <select
-              onChange={(e) => search('brand')(e.target.value)}
+              onChange={(e) => search('price')(e.target.value)}
               className="mt-2 border  border-gray-900 rounded-md w-full py-2 "
               name=""
               id=""
             >
               {priceRangeOptions.map((type, index) => (
-                <option value={index} key={index}>
+                <option value={type.value} key={index}>
                   {type.label}
                 </option>
               ))}
