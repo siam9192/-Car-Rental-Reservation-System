@@ -17,6 +17,7 @@ import NotFound from '../pages/error/NotFound';
 import About from '../pages/about/About';
 import PaymentLoading from '../pages/paymentLoading.tsx/PaymentLoading';
 import BookingConfirm from '../pages/dashboard/global/bookingConfirm/BookingConfirm';
+import Booking from '../pages/dashboard/admin/booking/Booking';
 
 const routes = createBrowserRouter([
   {
@@ -31,6 +32,10 @@ const routes = createBrowserRouter([
       {
         path: '/car-listing',
         element: <CarListing />,
+      },
+      {
+        path: '/bookings',
+        element: <Booking/>,
       },
       {
         path: '/car/:id',

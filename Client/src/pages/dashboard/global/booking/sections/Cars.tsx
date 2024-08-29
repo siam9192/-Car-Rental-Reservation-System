@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useGetCarsQuery } from '../../../../../redux/features/Car/Car.api';
-import { TParam } from '../../../../../types';
+import { TCar, TParam } from '../../../../../types';
 import { useLocation } from 'react-router-dom';
 import Card from '../components/Card';
 
@@ -24,7 +24,7 @@ const Cars = ({ setId }: TCarsProps) => {
   });
 
   const { data, refetch, isLoading: carsLoading } = useGetCarsQuery(params);
-  const cars = data?.data;
+  const cars:TCar[] = data?.data;
 
   useEffect(() => {
     if (cars && active !== null) {

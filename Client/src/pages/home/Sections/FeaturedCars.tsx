@@ -9,7 +9,7 @@ import { useGetCarsQuery } from '../../../redux/features/Car/Car.api';
 
 const FeaturedCars = () => {
   const { data } = useGetCarsQuery(undefined);
-  const cars = data?.data;
+  const cars:TCar[] = data?.data;
   return (
     <section className="mt-5 md:py-10 ">
       <Heading

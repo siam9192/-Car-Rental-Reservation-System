@@ -11,7 +11,7 @@ import SecondaryDashboardSidebar from '../../Sidebar/SecondaryDashboardSidebar';
 const DashboardHeader = () => {
   const { data } = useGetMeQuery(undefined);
   const user = data?.data;
-
+ 
   const dispatch = useDispatch();
   return (
     <header className="py-4 md:py-6 px-5 bg-white dark:bg-dark-light-secondary fixed left-0 top-0 z-50 w-full ">
@@ -22,7 +22,7 @@ const DashboardHeader = () => {
             to={'/dashboard'}
             className="pl-4 flex items-center gap-2 rounded-full border bg-blue-100 "
           >
-            <h2 className="font-bold uppercase">SIAM</h2>
+            <h2 className="font-bold uppercase">{user?.name.split(' ')[0]}</h2>
             <img
               className="size-10 rounded-full"
               src={

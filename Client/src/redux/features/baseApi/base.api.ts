@@ -7,10 +7,9 @@ import {
   fetchBaseQuery,
 } from '@reduxjs/toolkit/query/react';
 import { RootState } from '../../store';
-import { logout, setUser } from '../auth/auth.slice';
 
 const baseQuery = fetchBaseQuery({
-  baseUrl: 'http://localhost:5000/api/v1',
+  baseUrl: 'https://car-rental-reservation-system-ocq6vn0mq-siam-hasans-projects.vercel.app/api/v1',
   credentials: 'include',
   prepareHeaders: (headers, { getState }) => {
     const token = (getState() as RootState).auth.token;
