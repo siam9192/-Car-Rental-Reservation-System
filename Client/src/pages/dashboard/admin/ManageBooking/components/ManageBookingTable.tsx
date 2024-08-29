@@ -3,6 +3,8 @@ import {
   useApproveBookingMutation,
   useCancelBookingMutation,
 } from '../../../../../redux/features/admin/booking.api';
+import AlertModal from '../../../../../compoments/modal/AleartModal';
+import { toast } from 'sonner';
 
 const ManageBookingTable = () => {
   const { data } = useGetBookingsQuery(undefined);
@@ -24,7 +26,16 @@ const ManageBookingTable = () => {
     approve(id);
   };
   const handelCancelBooking = (id: string) => {
-    cancel(id);
+   return async()=>{
+   const res = await cancel(id);
+
+   if(!res?.error){
+    toast.success('Booking canceled',{duration:3000})
+   }
+   else {
+    toast.error('Something went wrong',{duration:3000})
+   }
+   }
   };
   return (
     <div className="flex flex-col">
@@ -63,7 +74,7 @@ const ManageBookingTable = () => {
                       <td className="whitespace-nowrap px-6 py-4">
                         {booking.isPaid ? 'PAID' : 'UNPAID'}
                       </td>
-                      <td className="whitespace-nowrap px-6 py-4 space-x-2 ">
+                      <td className="whitespace-nowrap px-6 py-4 flex items-center gap-2">
                         {booking.status === 'pending' ? (
                           <>
                             <button
@@ -72,12 +83,14 @@ const ManageBookingTable = () => {
                             >
                               Approve
                             </button>
+                            <AlertModal message='Are you want to cancel this booking?' onConfirm={handelCancelBooking(booking._id)}>
                             <button
                               onClick={() => handelCancelBooking(booking._id)}
                               className="px-4 py-2 bg-red-500 text-white"
                             >
                               Cancel
                             </button>
+                            </AlertModal>
                           </>
                         ) : (
                           <button

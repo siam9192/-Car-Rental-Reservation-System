@@ -1,3 +1,6 @@
+import { toast } from 'sonner';
+import AlertModal from '../../../../../compoments/modal/AleartModal';
+import { useCancelBookingMutation } from '../../../../../redux/features/booking/booking.api';
 import { useGetMyBookingsQuery } from '../../../../../redux/features/user/bookingManagement';
 
 const ManageBookingTable = () => {
@@ -14,11 +17,21 @@ const ManageBookingTable = () => {
     'Payment Status',
     'Action',
   ];
-  //   const [approve] = useApproveBookingMutation();
-  //   const [cancel] = useCancelBookingMutation();
-
+  
+  const [cancelBooking] = useCancelBookingMutation()
   const handelCancelBooking = (id: string) => {
-    // cancel(id);
+   
+   return async()=>{
+   const res = await cancelBooking(id)
+   if(res.data?.data){
+    toast.success('Booking canceled',{duration:3000})
+   }
+   else {
+    toast.error('something went wrong',{duration:3000})
+   }
+
+ 
+   }
   };
   return (
     <div className="flex flex-col">
@@ -38,7 +51,7 @@ const ManageBookingTable = () => {
               <tbody>
                 {bookings?.map((booking, index) => {
                   return (
-                    <tr className="border-b border-neutral-200 dark:border-white/10">
+                    <tr key={index} className="border-b border-neutral-200 dark:border-white/10">
                       <td className="whitespace-nowrap px-6 py-4 font-medium">
                         #{booking._id}
                       </td>
@@ -63,12 +76,14 @@ const ManageBookingTable = () => {
                       <td className="whitespace-nowrap px-6 py-4 space-x-2 ">
                         {booking.status === 'pending' ? (
                           <>
-                            <button
+                          <AlertModal message='Are you want to cancel this booking' onConfirm={handelCancelBooking(booking._id)}>
+                          <button
                               onClick={() => handelCancelBooking(booking._id)}
                               className="px-4 py-2 bg-red-500 text-white"
                             >
                               Cancel
                             </button>
+                          </AlertModal>
                           </>
                         ) : (
                           <button className="px-4 py-2 bg-secondary-color text-white">

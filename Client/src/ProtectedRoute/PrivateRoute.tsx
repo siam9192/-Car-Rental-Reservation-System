@@ -18,7 +18,7 @@ const PrivateRoute = ({ roles, children }: TPrivateRouteProps) => {
     return <LoadingPage />;
   }
 
-  console.log(user);
+
 
   if (!user || !roles.includes(user?.role!)) {
     if (state) {

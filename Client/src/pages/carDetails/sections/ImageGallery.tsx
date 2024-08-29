@@ -35,7 +35,7 @@ const ImageGallery = ({ images }: TImageGalleryProps) => {
         </div>
 
        <div className=' flex items-center justify-center min-h-[200px] lg:hidden'>
-       <img src={images[activeImage]} className="w-1/2 lg:w-full " alt="" />
+       <img src={images[activeImage]} className="w-full " alt="" />
        </div>
       </div>
       <div className=" grid grid-cols-4 gap-5">
@@ -46,7 +46,7 @@ const ImageGallery = ({ images }: TImageGalleryProps) => {
               onClick={() => handleActiveImage(index)}
               key={index}
             >
-              <img src={image} className="w-full" key={index} alt="" />
+              <img src={image} className="w-full " key={index} alt="" />
             </div>
           );
         })}

@@ -8,7 +8,7 @@ const RecentReview = () => {
         Recent Reviews
       </h1>
       <div className="mt-5 flex justify-center items-center h-full">
-        <h3 className=" text-center text-xl text-slate-100 font-semibold">
+        <h3 className=" text-center text-xl dark:text-slate-100 font-semibold">
           No Recent Reviews
         </h3>
       </div>

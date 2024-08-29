@@ -20,9 +20,11 @@ const carApi = baseApi.injectEndpoints({
           method: 'GET',
         };
       },
-      transformResponse: (response: TResponseRedux<TCar[]>) => {
+
+      transformResponse: (response:any) => {
         return {
-          data: response.data
+          data: response?.data?.data,
+          meta:response.data?.meta
         };
       },
       providesTags: ['car'],

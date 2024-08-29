@@ -54,9 +54,7 @@ const ManageUser = () => {
                     Make User
                   </button>
                 )}
-                <button className="px-4 py-2 bg-pink-600 text-white">
-                  Block User
-                </button>
+               
               </div>
               <span
                 className={`absolute top-2 md:top-4  right-2 text-[0.9rem] text-white px-4 py-2 ${user.role === 'user' ? 'bg-green-500' : 'bg-primary-color'} rounded-full`}

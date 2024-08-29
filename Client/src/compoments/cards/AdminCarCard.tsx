@@ -4,31 +4,50 @@ import { LuDollarSign } from 'react-icons/lu';
 import { MdOutlineAirlineSeatReclineExtra } from 'react-icons/md';
 import { Link, useNavigate } from 'react-router-dom';
 import AlertModal from '../modal/AleartModal';
+import { useDeleteCarMutation } from '../../redux/features/admin/CarManagement.api';
+import { toast } from 'sonner';
+import { useAppSelector } from '../../redux/hook';
 type TPrimaryCarCard = {
   car: TCar;
 };
 const AdminCarCard = ({ car }: TPrimaryCarCard) => {
-  const handelDelete = () => {};
+
   const navigate = useNavigate();
   // /images/cars/car1.png
+  const user = useAppSelector(state=>state.auth.user)
   const stopPropagation = (e: any) => {
     e.stopPropagation();
   };
-
-  const deleteCar = () => {};
+  
+  const [deleteCar] = useDeleteCarMutation()
+  const handelDeleteCar = async() => {
+    const res = await deleteCar(car._id)
+    if(!res.error){
+      toast.success('Car deleted successfully',{duration:3000})
+    }
+    else {
+      toast.error('Something went wrong',{duration:3000})
+    }
+  };
 
   const handelNavigate = () => {
     navigate(`/car/${car._id}`);
   };
+  const handelNavigateToEditPage = (e:any)=>{
+   e.stopPropagation()
+  navigate(`/dashboard/admin/update-car/${car._id}`)
+  
+ 
+  }
   return (
     <div
       onClick={handelNavigate}
-      className=" bg-white dark:bg-[#1D232A] p-3 rounded-lg hover:cursor-pointer border  dark:border-none flex flex-col h-full"
+      className=" bg-white dark:bg-[#1D232A] p-3 rounded-lg hover:cursor-pointer border  dark:border-none flex flex-col h-full "
     >
       <div className="bg-gray-secondary dark:bg-transparent p-3 md:p-5 rounded-lg">
         <img className="w-full scale-125" src={car.images[0]} alt="" />
       </div>
-      <div className="mt-5 ">
+      <div className="mt-5 flex-grow ">
         <div className="space-y-3">
           <div className="space-y-2">
             <h6 className="font-medium dark:text-slate-200">{car.brand}</h6>
@@ -68,22 +87,20 @@ const AdminCarCard = ({ car }: TPrimaryCarCard) => {
             </h1>
           </div>
         </div>
-        <div className="flex justify-between items-center mt-5">
-          <Link
-            onClick={stopPropagation}
-            to={`/dashboard/update-car/${car._id}`}
-          >
-            <button className="px-4 py-2  bg-secondary-color text-white rounded-full">
+        
+      </div>
+      <div className="flex justify-between items-center mt-5">
+        
+            <button onClick={handelNavigateToEditPage} className="px-4 py-2  bg-secondary-color text-white rounded-full">
               Edit
             </button>
-          </Link>
-          <AlertModal onConfirm={deleteCar} message="Are you sure?">
+         
+          <AlertModal onConfirm={handelDeleteCar} message="Are you sure?">
             <button className="px-4 py-2  bg-red-500 text-white rounded-full">
-              Remove
+            Delete
             </button>
           </AlertModal>
         </div>
-      </div>
     </div>
   );
 };

@@ -21,11 +21,11 @@ const SelectPaymentMethodModal = ({booking,children}:TSelectPaymentMethodModalPr
             logo:'/images/logos/amarpay.png',
             value:'amarpay'
         },
-        {
-            name:'Ssl',
-            logo:'/images/logos/ssl.png',
-            value:'ssl'
-        },
+        // {
+        //     name:'Ssl',
+        //     logo:'/images/logos/ssl.png',
+        //     value:'ssl'
+        // },
         {
             name:'Stripe',
             logo:'/images/logos/stripe.png',

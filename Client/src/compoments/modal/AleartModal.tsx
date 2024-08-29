@@ -19,6 +19,7 @@ const AlertModal = ({
   const [openModal, setOpenModal] = useState(false);
 
   const handelConfirm = () => {
+    console.log(onConfirm)
     if (onConfirm) {
       onConfirm();
       setOpenModal(false);

@@ -45,7 +45,12 @@ const Login = () => {
       if (state) {
         navigate(state);
       } else {
-        navigate('/dashboard');
+       if(user.role === 'admin'){
+        navigate('/dashboard/admin');
+       }
+       else {
+        navigate('/dashboard')
+       }
       }
       dispatch(toggleLogging());
     }

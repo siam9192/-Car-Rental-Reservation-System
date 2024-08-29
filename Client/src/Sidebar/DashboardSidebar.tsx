@@ -12,17 +12,28 @@ const DashboardSidebar = () => {
   const [active, setActive] = useState(0);
   const user = useAppSelector((state) => state.auth.user);
   let sidebarItems: any;
+  let path:string;
   switch (user?.role) {
     case 'admin':
       sidebarItems = sidebarItemsGenerator(adminPaths);
+      path = pathname.split('/admin')[1]
+      if(path.charAt(0) === '/'){
+        path = path.substring(1)
+       }
       break;
     case 'user':
       sidebarItems = sidebarItemsGenerator(userPaths);
+      path = pathname.split('/dashboard/')[1]||''
+      
+      break
   }
+  
 
   const handelSetActive = (value: number) => {
     setActive(value);
   };
+  
+  
 
   return (
     <section className="h-[100vh] w-full bg-white dark:bg-dark-light-secondary pt-32 px-5 shadow">
@@ -37,7 +48,7 @@ const DashboardSidebar = () => {
               >
                 <div
                   key={index}
-                  className={`flex items-center gap-2 p-3 ${active === index ? 'bg-gray-primary dark:bg-dark-light-primary' : ''} rounded-lg`}
+                  className={`flex items-center gap-2 p-3 ${item.path === path ? 'bg-gray-primary dark:bg-dark-light-primary' : ''} rounded-lg`}
                 >
                   <span className="text-2xl text-black dark:text-slate-100 ">
                     {' '}

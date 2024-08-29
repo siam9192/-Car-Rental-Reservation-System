@@ -14,7 +14,7 @@ const Card = ({ car, selected }: { car: TCar; selected: boolean }) => {
     >
       <div className=" flex justify-between items-center">
         <div className="bg-gray-secondary dark:bg-transparent p-3 md:p-5 rounded-lg w-[50%]">
-          <img className="w-full scale-125" src={car.images[0]} alt="" />
+          <img className="w-full " src={car.images[0]} alt="" />
         </div>
         <div className="mt-5">
           <div className="space-y-3">

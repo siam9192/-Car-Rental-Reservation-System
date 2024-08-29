@@ -1,9 +1,26 @@
 import React from 'react';
 import { TCar } from '../../../types';
+import { useNavigate } from 'react-router-dom';
+import { useAppSelector } from '../../../redux/hook';
 type TCartSummeryProps = {
   car: TCar;
 };
 const PriceSummery = ({ car }: TCartSummeryProps) => {
+  const navigate = useNavigate()
+  const user = useAppSelector(state=>state.auth.user)
+  const handelNavigate =()=>{
+    if(user){
+      if(user?.role === 'admin'){
+        navigate('/dashboard/admin/booking')
+       }
+       else {
+        navigate('/dashboard/booking')
+       }
+    }
+    else {
+      navigate('/auth/login')
+    }
+  }
   return (
     <div className="bg-white dark:bg-dark-light-secondary p-10 shadow">
       <h1 className="text-3xl font-semibold dark:text-slate-50">
@@ -32,7 +49,7 @@ const PriceSummery = ({ car }: TCartSummeryProps) => {
         </h6>
       </div>
       <div className="mt-5">
-        <button className=" bg-primary-color py-3 text-white w-full">
+        <button onClick={handelNavigate} className=" bg-primary-color py-3 text-white w-full">
           Book Now
         </button>
       </div>

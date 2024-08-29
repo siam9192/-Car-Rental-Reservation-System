@@ -1,9 +1,11 @@
 import React, { useEffect, useState } from 'react';
 import { carBrands, carTypes } from '../../utils/data';
 import { IoFilter } from 'react-icons/io5';
+import { useNavigate } from 'react-router-dom';
 
 const FilterBar = ({ search }: { search: any }) => {
   const [isOpen, setOpen] = useState(false);
+  const navigate = useNavigate()
   useEffect(() => {
     if (isOpen) {
       window.document.body.style.overflow = 'hidden';
@@ -115,12 +117,10 @@ const FilterBar = ({ search }: { search: any }) => {
             </select>
           </div>
           <div className="flex justify-end gap-2">
-            <button className="mt-5 bg-red-500 text-white px-4 py-2 ">
+            <button onClick={()=>navigate('/car-listing')}  className="mt-5 bg-red-500 text-white px-4 py-2 ">
               Reset
             </button>
-            <button className="mt-5 bg-secondary-color text-white px-4 py-2 ">
-              Apply
-            </button>
+          
           </div>
         </div>
       </section>

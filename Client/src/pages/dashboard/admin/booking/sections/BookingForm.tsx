@@ -86,7 +86,7 @@ const BookingForm = ({ car}: TBooKingFormProps) => {
             label="Driving License "
             type="text"
           />
-          <button className="mt-5 bg-secondary-color  py-3 w-full text-white">
+           <button disabled = {car.status === 'unavailable'} className="mt-5 bg-secondary-color disabled:bg-gray-200 dark:bg-dark-light-primary py-3 w-full text-white">
             Book
           </button>
         </Form>

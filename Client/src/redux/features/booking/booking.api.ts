@@ -48,6 +48,18 @@ const bookingApi = baseApi.injectEndpoints({
       },
       providesTags: ['car'],
     }),
+    cancelBooking: builder.mutation({
+      query: (id) => ({
+        url: `/bookings/cancel-booking/${id}`,
+        method: 'POST',
+      }),
+      transformResponse: (response: TResponseRedux<TBooking>) => {
+        return {
+          data: response.data,
+        };
+      },
+     invalidatesTags:['booking']
+    }),
     confirmBooking: builder.mutation({
       query: (id) => ({
         url: `bookings/confirm/${id}`,
@@ -67,5 +79,6 @@ export const {
   useCreateBookingMutation,
   useGetBookingQuery,
   useGetBookingsQuery,
-  useConfirmBookingMutation
+  useConfirmBookingMutation,
+  useCancelBookingMutation
 } = bookingApi;

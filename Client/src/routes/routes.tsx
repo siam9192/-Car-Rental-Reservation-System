@@ -8,7 +8,7 @@ import CarDetails from '../pages/carDetails/CarDetails';
 import DashboardLayout from '../compoments/layout/DashboardLayout';
 import { adminPaths } from './admin.routes';
 import { routeGenerator } from '../utils/fun';
-import UpdateCar from '../pages/dashboard/admin/UpdateCar';
+import UpdateCar from '../pages/dashboard/admin/updateCar/UpdateCar';
 import PrivateRoute from '../ProtectedRoute/PrivateRoute';
 import AuthRouteProtector from '../ProtectedRoute/AuthRouteProtector';
 import { userPaths } from './user.routes';

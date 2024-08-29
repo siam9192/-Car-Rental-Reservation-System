@@ -2,6 +2,7 @@ import { TCar } from '../../types';
 import { IoCheckmarkDone } from 'react-icons/io5';
 import { LuDollarSign } from 'react-icons/lu';
 import { MdOutlineAirlineSeatReclineExtra } from 'react-icons/md';
+import { Link } from 'react-router-dom';
 type TSecondaryCardProps = {
   car: TCar;
 };
@@ -46,9 +47,11 @@ const SecondaryCarCard = ({ car }: TSecondaryCardProps) => {
             </div>
           </div>
           <div className="flex justify-between  flex-col-reverse gap-2 lg:flex-row lg:gap-0  items-center mt-5">
+          <Link to={`/car/${car._id}`}>
             <button className="px-4 py-2  bg-secondary-color text-white rounded-full">
               Read More
             </button>
+            </Link>
             <div className="flex items-center text-xl lg:text-2xl font-bold dark:text-slate-100">
               <span>
                 <LuDollarSign />

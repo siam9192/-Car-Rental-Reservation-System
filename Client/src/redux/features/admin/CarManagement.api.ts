@@ -18,7 +18,14 @@ const carManagementApi = baseApi.injectEndpoints({
       }),
       invalidatesTags: ['car'],
     }),
+    deleteCar: builder.mutation({
+      query: (id) => ({
+        url: `cars/${id}`,
+        method: 'DELETE',
+      }),
+      invalidatesTags: ['car'],
+    }),
   }),
 });
 
-export const { useAddCarMutation, useUpdateCarMutation } = carManagementApi;
+export const { useAddCarMutation, useUpdateCarMutation,useDeleteCarMutation } = carManagementApi;

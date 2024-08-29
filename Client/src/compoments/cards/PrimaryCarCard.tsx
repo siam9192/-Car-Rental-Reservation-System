@@ -8,11 +8,11 @@ type TPrimaryCarCard = {
 };
 const PrimaryCarCard = ({ car }: TPrimaryCarCard) => {
   return (
-    <div className=" bg-white dark:bg-[#1D232A] p-3 rounded-lg hover:cursor-pointer border  dark:border-none">
+    <div className=" bg-white dark:bg-[#1D232A] p-3 rounded-lg hover:cursor-pointer border  dark:border-none flex flex-col h-full">
       <div className="bg-gray-secondary dark:bg-transparent p-3 md:p-5 rounded-lg">
         <img className="w-full scale-125" src={car.images[0]} alt="" />
       </div>
-      <div className="mt-5">
+      <div className="mt-5 flex-grow">
         <div className="space-y-3">
           <div className="space-y-2">
             <h6 className="font-medium dark:text-slate-200">{car.brand}</h6>
@@ -41,7 +41,9 @@ const PrimaryCarCard = ({ car }: TPrimaryCarCard) => {
             </div>
           </div>
         </div>
-        <div className="flex justify-between items-center mt-5">
+       
+      </div>
+      <div className="flex justify-between items-center mt-5">
           <Link to={`/car/${car._id}`}>
             <button className="px-4 py-2  bg-secondary-color text-white rounded-full">
               Read More
@@ -57,7 +59,6 @@ const PrimaryCarCard = ({ car }: TPrimaryCarCard) => {
             </h1>
           </div>
         </div>
-      </div>
     </div>
   );
 };

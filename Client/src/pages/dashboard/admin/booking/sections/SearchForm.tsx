@@ -5,6 +5,7 @@ import { DateRange } from 'react-date-range';
 import 'react-date-range/dist/styles.css'; // main style file
 import 'react-date-range/dist/theme/default.css'; // theme css file
 import { useLocation, useNavigate } from 'react-router-dom';
+import { useAppSelector } from '../../../../../redux/hook';
 const SearchForm = () => {
   const [openDatePicker, setOpenDatePicker] = useState(false);
   const [state, setState] = useState<any>([
@@ -15,16 +16,18 @@ const SearchForm = () => {
     },
   ]);
 
+  const user = useAppSelector(state=>state.auth.user)
+
   const locationOptions = [
-    { label: 'Location', value: '' },
+    { label: 'Location(all)', value: '' },
     ...locations.map((item) => ({ label: item, value: item })),
   ];
   const brandOptions = [
-    { label: 'Brand', value: '' },
+    { label: 'Brand(all', value: '' },
     ...carBrands.map((item) => ({ label: item, value: item })),
   ];
   const carTypeOptions = [
-    { label: 'Type', value: '' },
+    { label: 'Type (all)', value: '' },
     ...carTypes.map((item) => ({ label: item, value: item })),
   ];
 
@@ -50,7 +53,12 @@ const SearchForm = () => {
         searchParams.append(name, value);
       }
 
-      navigate(`/dashboard/booking?${searchParams.toString()}`);
+      if(user?.role === 'admin'){
+        navigate(`/dashboard/admin/booking?${searchParams.toString()}`);
+      }
+      else {
+        navigate(`/dashboard/booking?${searchParams.toString()}`);
+      }
     };
   };
   return (

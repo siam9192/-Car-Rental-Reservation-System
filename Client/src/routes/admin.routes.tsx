@@ -1,12 +1,11 @@
 import { SlGrid } from 'react-icons/sl';
-import AdminHome from '../pages/dashboard/admin/AdminHome';
 import { TSidebarItem } from '../types/route.type';
 import { LiaCarSideSolid, LiaUsersCogSolid } from 'react-icons/lia';
 import Booking from '../pages/dashboard/admin/booking/Booking';
 import { IoCarSportOutline } from 'react-icons/io5';
-import ManageCar from '../pages/dashboard/admin/ManageCar';
+import ManageCar from '../pages/dashboard/admin/manageCar/ManageCar';
 import { IoIosAdd } from 'react-icons/io';
-import AddCar from '../pages/dashboard/admin/AddCar';
+import AddCar from '../pages/dashboard/admin/addCar/AddCar';
 import ManageBooking from '../pages/dashboard/admin/ManageBooking/ManageBooking';
 import ManageUser from '../pages/dashboard/admin/ManageUser/ManageUser';
 import AdminOverview from '../pages/dashboard/admin/adminOverview/AdminOverview';
@@ -22,7 +21,7 @@ export const adminPaths: TSidebarItem[] = [
   },
   {
     icon: LiaCarSideSolid,
-    title: 'Booking',
+    title: 'Book Car',
     path: 'booking',
     element: <Booking />,
   },

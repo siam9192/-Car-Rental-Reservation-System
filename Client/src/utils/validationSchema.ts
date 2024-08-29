@@ -4,6 +4,7 @@ export const addCarValidationSchema = z.object({
   name: z.string({ required_error: 'Name is required' }),
   brand: z.string({ required_error: 'Brand is required' }),
   description: z.string({ required_error: 'Description is required' }),
+  type:z.string({required_error:'Car type is required'}),
   color: z.string({ required_error: 'Color is required' }),
   seats: z.union([z.string(), z.number()], {
     required_error: 'Seats is required',

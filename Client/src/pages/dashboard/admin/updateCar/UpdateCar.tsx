@@ -1,18 +1,18 @@
-import { useGetCarQuery } from '../../../redux/features/Car/Car.api';
+import { useGetCarQuery } from '../../../../redux/features/Car/Car.api';
 import { useParams } from 'react-router-dom';
 import { ChangeEvent, KeyboardEvent, useEffect, useRef, useState } from 'react';
-import Form from '../../../compoments/form/Form';
-import FormInput from '../../../compoments/form/FormInput';
-import FormSelect from '../../../compoments/form/FormSelect';
-import FormTextArea from '../../../compoments/form/FormTextArea';
-import { carFeatures, insurances, locations } from '../../../utils/data';
-import LoadingModal from '../../../compoments/modal/LoadingModal';
+import Form from '../../../../compoments/form/Form';
+import FormInput from '../../../../compoments/form/FormInput';
+import FormSelect from '../../../../compoments/form/FormSelect';
+import FormTextArea from '../../../../compoments/form/FormTextArea';
+import { carFeatures, carTypes, insurances, locations } from '../../../../utils/data';
+import LoadingModal from '../../../../compoments/modal/LoadingModal';
 import {
   useAddCarMutation,
   useUpdateCarMutation,
-} from '../../../redux/features/admin/CarManagement.api';
+} from '../../../../redux/features/admin/CarManagement.api';
 import { zodResolver } from '@hookform/resolvers/zod';
-import { addCarValidationSchema } from '../../../utils/validationSchema';
+import { addCarValidationSchema } from '../../../../utils/validationSchema';
 import { toast } from 'sonner';
 import { set } from 'react-hook-form';
 const UpdateCar = () => {
@@ -25,6 +25,10 @@ const UpdateCar = () => {
   const [selectedFeatures, setSelectedFeatures] = useState<string[]>([]);
   const imageUrlInputRef = useRef<HTMLInputElement>(null);
   const carSeatOptions = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10].map((item) => ({
+    display: item,
+    value: item,
+  }));
+  const carTypeOptions = carTypes.map((item) => ({
     display: item,
     value: item,
   }));
@@ -161,7 +165,7 @@ const UpdateCar = () => {
             <FormInput name="brand" label="Brand Name" type="text" />
           </div>
 
-          <div className="mt-5 grid grid-cols-3 gap-5">
+          <div className="mt-5 grid grid-cols-2 lg:grid-cols-4 gap-5">
             <FormSelect
               name="seats"
               label="Car Seats"
@@ -173,6 +177,7 @@ const UpdateCar = () => {
               type="number"
             />
             <FormInput name="color" label="Car Color" type="text" />
+            <FormSelect name="type" label="Car Type" options={carTypeOptions} />
           </div>
 
           {/* Select features */}
@@ -320,7 +325,7 @@ const UpdateCar = () => {
             type="submit"
             className="mt-5 w-full py-3 bg-primary-color text-white"
           >
-            Post Car
+            Update Car
           </button>
         </Form>
       </div>

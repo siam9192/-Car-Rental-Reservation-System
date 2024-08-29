@@ -35,7 +35,8 @@ const CarListing = () => {
   });
 
   const { data, refetch, isLoading: carsLoading } = useGetCarsQuery(params);
-  const cars = data?.data;
+  const cars:TCar[] = data?.data;
+  const meta = data?.meta
  
 
   useEffect(() => {
@@ -79,7 +80,7 @@ const CarListing = () => {
         )}
         {cars?.length && (
           <div className="mt-20 flex justify-center">
-            <PaginationPrimary onChange={handelPageChange} page={2} />
+            <PaginationPrimary onChange={handelPageChange} page={Math.ceil((meta.total)/10)} />
           </div>
         )}
       </Container>

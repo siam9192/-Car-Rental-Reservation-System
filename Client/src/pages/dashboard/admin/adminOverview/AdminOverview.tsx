@@ -1,6 +1,4 @@
-import React from 'react';
-import DashboardSectionContainer from '../../../../compoments/container/DashboardSectionContainer';
-import { overviewData } from '../../../../utils/data';
+
 import OverviewCard from './components/OverviewCard';
 import RecentBooking from './sections/RecentBooking';
 import RecentReview from './sections/RecentReview';

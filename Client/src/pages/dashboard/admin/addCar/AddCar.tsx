@@ -1,20 +1,21 @@
 import React, { ChangeEvent, KeyboardEvent, useRef, useState } from 'react';
-import Form from '../../../compoments/form/Form';
-import FormInput from '../../../compoments/form/FormInput';
-import FormSelect from '../../../compoments/form/FormSelect';
-import FormTextArea from '../../../compoments/form/FormTextArea';
+import Form from '../../../../compoments/form/Form';
+import FormInput from '../../../../compoments/form/FormInput';
+import FormSelect from '../../../../compoments/form/FormSelect';
+import FormTextArea from '../../../../compoments/form/FormTextArea';
 import {
   carBrands,
   carFeatures,
   carTypes,
   insurances,
   locations,
-} from '../../../utils/data';
-import LoadingModal from '../../../compoments/modal/LoadingModal';
-import { useAddCarMutation } from '../../../redux/features/admin/CarManagement.api';
+} from '../../../../utils/data';
+import LoadingModal from '../../../../compoments/modal/LoadingModal';
+import { useAddCarMutation } from '../../../../redux/features/admin/CarManagement.api';
 import { zodResolver } from '@hookform/resolvers/zod';
-import { addCarValidationSchema } from '../../../utils/validationSchema';
+import { addCarValidationSchema } from '../../../../utils/validationSchema';
 import { toast } from 'sonner';
+import { useNavigate } from 'react-router-dom';
 const AddCar = () => {
   const [imagesUrl, setImagesUrl] = useState<string[]>([]);
   const [isElectric, setIsElectric] = useState(false);
@@ -22,6 +23,8 @@ const AddCar = () => {
   const [selectedInsurances, setSelectedInsurances] = useState<string[]>([]);
   const [selectedFeatures, setSelectedFeatures] = useState<string[]>([]);
   const imageUrlInputRef = useRef<HTMLInputElement>(null);
+
+  const navigate = useNavigate()
   const carSeatOptions = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10].map((item) => ({
     display: item,
     value: item,
@@ -54,6 +57,7 @@ const AddCar = () => {
       return;
     }
     if (key === 'Enter') {
+      e.preventDefault()
       handelSetImageUrl(value);
       e.currentTarget.value = '';
     }
@@ -105,9 +109,7 @@ const AddCar = () => {
     }
   };
 
-  const handelSetIsElectric = (e: ChangeEvent<HTMLInputElement>) => {
-    setIsElectric(e.currentTarget.checked);
-  };
+ 
   const [addCar, { isLoading }] = useAddCarMutation();
 
   // Form submit function
@@ -127,6 +129,7 @@ const AddCar = () => {
       toast.error('Something went wrong', { duration: 3000 });
     } else {
       toast.success('Car added successfully', { duration: 3000 });
+      navigate('/dashboard/admin/manage-car')
     }
   };
 
@@ -257,7 +260,7 @@ const AddCar = () => {
           {/*  Added images Preview*/}
           <div className=" mt-5 ">
             <h6 className="mb-1 dark:text-slate-100 font-medium">
-              Added Images ({imagesUrl.length})
+              Added Images ({imagesUrl.length}) <span className='text-[0.9rem]'>Double click on image to remove </span>
             </h6>
             <div className="flex flex-wrap gap-3">
               {imagesUrl.map((url, index) => {

@@ -48,7 +48,7 @@ const SecondaryDashboardSidebar = () => {
   return (
     <div
       onClick={closeSidebar}
-      className={`w-full h-full fixed ${isSidebarOpen ? 'left-0' : '-left-[200%]'} transition-all duration-300 top-0  shadow bg-white dark:bg-gray-900   md:hidden p-5`}
+      className={`w-full h-full fixed ${isSidebarOpen ? 'left-0' : '-left-[200%]'} transition-all duration-300 top-0  shadow bg-white dark:bg-gray-900   lg:hidden p-5`}
     >
       <div className=" flex flex-col justify-between h-full ">
         <div className="mt-10 space-y-5">

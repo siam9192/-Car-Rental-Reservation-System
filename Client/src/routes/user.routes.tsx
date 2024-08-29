@@ -16,7 +16,7 @@ export const userPaths: TSidebarItem[] = [
   },
   {
     icon: LiaCarSideSolid,
-    title: 'Booking',
+    title: 'Book Car',
     path: 'booking',
     element: <Booking />,
   },
