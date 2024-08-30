@@ -11,16 +11,21 @@ import { LuDollarSign } from 'react-icons/lu';
 import { GrLocation } from 'react-icons/gr';
 import BookingForm from './BookingForm';
 import CancelationPolicy from './CancelationPolicy';
+import { useAppSelector } from '../../../redux/hook';
 type TDetails = {
   id: string | null;
 };
+
 const Details = ({ id }: TDetails) => {
+ 
   const {
     data,
     isLoading: carLoading,
     isFetching: carFetching,
     refetch,
   } = useGetCarQuery(id);
+
+
   const [activeImage, setActiveImage] = useState(0);
   const car = data?.data;
   useEffect(() => {

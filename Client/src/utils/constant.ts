@@ -10,7 +10,15 @@ export const navRoutes = [
     path: '/car-listing',
   },
   {
-    display: 'About',
+    display: 'Bookings',
+    path: '/bookings',
+  },
+  {
+    display: 'About Us',
+    path: '/about-us',
+  },
+  {
+    display: 'Contact Us',
     path: '/about-us',
   }
 ];

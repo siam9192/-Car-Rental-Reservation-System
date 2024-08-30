@@ -38,12 +38,14 @@ const Header = () => {
                 </Link>
               );
             })}
-            <Link
-                  to={user?.role === 'admin'?'/dashboard/admin':'dashboard'}
-                  className= "text-[1.2rem] hover:text-primary-color font-medium text-gray-800 dark:text-slate-200"
-                >
-                  Dashboard
-                </Link>
+         {
+          token &&    <Link
+          to={user?.role === 'admin'?'/dashboard/admin':'dashboard'}
+          className= "text-[1.2rem] hover:text-primary-color font-medium text-gray-800 dark:text-slate-200"
+        >
+          Dashboard
+        </Link>
+         }
           </nav>
 
           {/* Menu button */}

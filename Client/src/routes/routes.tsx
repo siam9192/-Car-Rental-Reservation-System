@@ -19,6 +19,7 @@ import PaymentLoading from '../pages/paymentLoading.tsx/PaymentLoading';
 import BookingConfirm from '../pages/bookingConfirm/BookingConfirm';
 import Booking from '../pages/booking/Booking';
 import ForgetPassword from '../pages/forgetPassword/ForgetPassword';
+import ContactUs from '../pages/contactUs/ContactUs';
 
 
 const routes = createBrowserRouter([
@@ -37,7 +38,7 @@ const routes = createBrowserRouter([
       },
       {
         path: '/bookings',
-        element: <Booking/>,
+        element: <PrivateRoute roles={['admin','user']}><Booking/></PrivateRoute>,
       },
       {
         path: '/car/:id',
@@ -86,6 +87,10 @@ const routes = createBrowserRouter([
       {
         path:'/auth/forget-password',
         element:<ForgetPassword/>
+      },
+      {
+        path:'/contact-us',
+        element:<ContactUs/>
       }
     ],
   },

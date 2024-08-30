@@ -10,7 +10,7 @@ import { RootState } from '../../store';
 
 // https://car-rental-reservation-system-ocq6vn0mq-siam-hasans-projects.vercel.app/api/v1
 const baseQuery = fetchBaseQuery({
-  baseUrl: 'https://car-rental-reservation-system-kl9mvup0r-siam-hasans-projects.vercel.app/api/v1',
+  baseUrl: 'https://car-rental-reservation-system-pf407ggve-siam-hasans-projects.vercel.app/api/v1',
   credentials: 'include',
   prepareHeaders: (headers, { getState }) => {
     const token = (getState() as RootState).auth.token;

@@ -73,7 +73,7 @@ const CarListing = () => {
           </div>
         ) : (
           <div className="mt-10 flex items-center justify-center">
-            <h1 className="mt-32 text-3xl md:text-4xl text-slate-100">
+            <h1 className="mt-32 text-3xl md:text-4xl dark:text-slate-100">
               No Results Found
             </h1>
           </div>

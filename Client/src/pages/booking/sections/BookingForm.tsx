@@ -11,6 +11,7 @@ import { useGetMeQuery } from '../../../redux/features/auth/auth.api';
 import { toast } from 'sonner';
 import { useNavigate } from 'react-router-dom';
 import { TCar } from '../../../types';
+import { useAppSelector } from '../../../redux/hook';
 
 type TBooKingFormProps = {
   car: TCar;
@@ -18,11 +19,17 @@ type TBooKingFormProps = {
 const BookingForm = ({ car}: TBooKingFormProps) => {
   const [error, setError] = useState('');
   const navigate = useNavigate()
+
+  const token = useAppSelector(state=>state.auth.token)
+  
   const [createBooking, { isLoading }] = useCreateBookingMutation();
   const { data } = useGetMeQuery(undefined);
   const user = data?.data;
-
+  
   const onSubmit = async (values: any) => {
+    if(!token){
+      navigate('/auth/login')
+    }
     const data: any = {
       carId: car._id,
       startTime: new Date().toISOString(),
