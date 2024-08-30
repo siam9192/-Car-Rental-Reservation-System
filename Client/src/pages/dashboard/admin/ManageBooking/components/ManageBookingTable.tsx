@@ -22,8 +22,15 @@ const ManageBookingTable = () => {
   const [approve] = useApproveBookingMutation();
   const [cancel] = useCancelBookingMutation();
 
-  const handelApproveBooking = (id: string) => {
-    approve(id);
+  const handelApproveBooking = async(id: string) => {
+   const res = await approve(id);
+    
+   if(!res?.error){
+    toast.success('Booking Approved',{duration:3000})
+   }
+   else {
+    toast.error('Something went wrong',{duration:3000})
+   }
   };
   const handelCancelBooking = (id: string) => {
    return async()=>{

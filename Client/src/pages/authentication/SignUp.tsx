@@ -48,6 +48,7 @@ const SignUp = () => {
           <Form
             onSubmit={onSubmit}
             resolver={zodResolver(signUpValidationSchema)}
+            reset={true}
           >
             <div className="space-y-5">
               <FormInput name="name" label="Name" type="text" />

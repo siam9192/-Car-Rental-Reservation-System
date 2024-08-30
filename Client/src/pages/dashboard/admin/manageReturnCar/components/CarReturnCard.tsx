@@ -22,7 +22,8 @@ const CarReturnCard = ({ booking }: TCarReturnCard) => {
 
   const [returnCar, { isLoading }] = useReturnCarMutation();
   const handelCarReturn = async () => {
-    const res: any = returnCar({ bookingId: booking._id });
+    const res: any = await returnCar({ bookingId: booking._id });
+    
     if (res?.error || !res?.data) {
       toast.error('Car can not be returned', { duration: 3000 });
     } else {

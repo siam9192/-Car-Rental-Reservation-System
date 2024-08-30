@@ -56,18 +56,18 @@ const EditProfile = () => {
     }
     const data = { ...values };
 
-    if (newProfilePhoto) {
-      const res = await axios.post(
-        `https://api.imgbb.com/1/upload?key=c9c302a9d5cee64c8eb4dde4d9803027`,
-        { image: newProfilePhoto?.file },
-        {
-          headers: {
-            'content-type': 'multipart/form-data',
-          },
-        }
-      );
-      data.profilePhoto = res.data.data.display_url;
-    }
+    // if (newProfilePhoto) {
+    //   const res = await axios.post(
+    //     `https://api.imgbb.com/1/upload?key=c9c302a9d5cee64c8eb4dde4d9803027`,
+    //     { image: newProfilePhoto?.file },
+    //     {
+    //       headers: {
+    //         'content-type': 'multipart/form-data',
+    //       },
+    //     }
+    //   );
+    //   data.profilePhoto = res.data.data.display_url;
+    // }
     const res = await updateProfile(data);
     if (res?.error || !res?.data.success) {
       toast.error('Something went wrong', { duration: 3000 });
@@ -107,6 +107,7 @@ const EditProfile = () => {
             >
               Change Picture
             </button>
+            <p className='mt-1 text-red-500'>Currently profile image can not be change because of deployment</p>
           </div>
 
           <Form

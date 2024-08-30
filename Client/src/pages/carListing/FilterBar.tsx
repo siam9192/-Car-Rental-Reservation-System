@@ -8,6 +8,7 @@ const FilterBar = ({ search }: { search: any }) => {
   const navigate = useNavigate()
   useEffect(() => {
     if (isOpen) {
+      window.scrollTo(0,0)
       window.document.body.style.overflow = 'hidden';
     }
     return () => {
@@ -38,10 +39,13 @@ const FilterBar = ({ search }: { search: any }) => {
       value: '501-1000'
     },
   ];
-  const brandOptions = carBrands.map((item) => ({
+  const brandOptions =[  {
+    label: 'Default',
+    value: '',
+  },...carBrands.map((item) => ({
     label: item,
     value: item,
-  }));
+  }))];
 
   return (
     <div>
@@ -92,6 +96,10 @@ const FilterBar = ({ search }: { search: any }) => {
               name=""
               id=""
             >
+              
+              <option value={''} >
+                  Default
+                </option>
               {carTypes.map((type, index) => (
                 <option value={type} key={index}>
                   {type}

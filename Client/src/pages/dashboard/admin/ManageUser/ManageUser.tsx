@@ -39,7 +39,7 @@ const ManageUser = () => {
                 </div>
               </div>
               <div className="text-end space-x-2 mt-2">
-                {user.role === 'admin' ? (
+                {user.role !== 'admin' ? (
                   <button
                     onClick={() => handelChangeRole(user._id, 'user')}
                     className="px-4 py-2 bg-secondary-color text-white"
