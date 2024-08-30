@@ -9,13 +9,13 @@ const PaymentLoading = () => {
     if(!id){
      navigate('/')
     }
-    console.log(id)
+ 
     const [paymentSuccess] = usePaymentSuccessMutation()
     useEffect(()=>{
-      paymentSuccess(id)
+      if(id){
+        paymentSuccess(id)
       .then(res=>{
         const url = res.data?.data?.url
-        console.log()
         if(url){
         navigate(url)
         }
@@ -24,6 +24,8 @@ const PaymentLoading = () => {
         }
       })
 
+      }
+     
     },[])
   return (
     <div className='h-[100vh] flex flex-col gap-2 justify-center items-center'>

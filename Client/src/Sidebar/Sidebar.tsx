@@ -9,6 +9,7 @@ const Sidebar = () => {
   const dispatch = useAppDispatch();
   const isSidebarOpen = useAppSelector((state) => state.toggle.isSidebarOpen);
   const token = useAppSelector(state=>state.auth.token)
+  const user = useAppSelector(state=>state.auth.user)
   console.log(token)
   useEffect(() => {
     if (isSidebarOpen) {
@@ -45,7 +46,7 @@ const Sidebar = () => {
             );
           })}
           {
-            !token &&    <div className='mt-5 space-x-2'>
+            !token ?   <div className='mt-5 space-x-2'>
   
             <Link to={'/auth/login'}>
               <button className="  bg-black dark:bg-white text-white dark:text-black  text-wrap px-4 py-2 rounded-full  ">
@@ -58,7 +59,16 @@ const Sidebar = () => {
               </button>
             </Link>
             </div>
-          }
+            :
+            <Link
+            to={user?.role === 'admin'?'/dashboard/admin':'dashboard'}
+            className= " block   text-2xl hover:text-primary-color font-medium text-gray-800 dark:text-slate-200"
+          >
+            Dashboard
+          </Link>
+             }
+    
+
         </nav>
    
         
