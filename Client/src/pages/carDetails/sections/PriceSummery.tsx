@@ -9,17 +9,18 @@ const PriceSummery = ({ car }: TCartSummeryProps) => {
   const navigate = useNavigate()
   const user = useAppSelector(state=>state.auth.user)
   const handelNavigate =()=>{
-    if(user){
-      if(user?.role === 'admin'){
-        navigate('/dashboard/admin/booking')
-       }
-       else {
-        navigate('/dashboard/booking')
-       }
-    }
-    else {
-      navigate('/auth/login')
-    }
+    // if(user){
+    //   if(user?.role === 'admin'){
+    //     navigate('/dashboard/admin/booking')
+    //    }
+    //    else {
+    //     navigate('/dashboard/booking')
+    //    }
+    // }
+    // else {
+    //   navigate('/auth/login')
+    // }
+    navigate('/bookings')
   }
   return (
     <div className="bg-white dark:bg-dark-light-secondary p-10 shadow">

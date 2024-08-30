@@ -29,9 +29,9 @@ const Login = () => {
 
     const res: any = await login(data);
     if (!res.data || res.error) {
-      toast.error(res.error?.data.message, { duration: 3000 });
+      toast.error(res.error?.data.message, { duration: 3000,position:'bottom-left' });
     } else {
-      toast.success('Login successfully ', { duration: 3000 });
+      toast.success('Login successfully ', { duration: 3000,position:'bottom-left' });
       const data = res.data;
       const decode: any = decodeToken(data.token);
       const user = {
@@ -40,7 +40,6 @@ const Login = () => {
         exp: decode.exp,
         iat: decode.iat,
       };
-      dispatch(toggleLogging());
       dispatch(setUser({ user, token: data.token }));
       if (state) {
         navigate(state);
@@ -104,12 +103,21 @@ const Login = () => {
                 </Link>
               </p>
             </div>
+            <div className="mt-2 text-end">
+              <p className="dark:text-slate-200 ">
+            
+                <Link to={'/auth/forget-password'} state={'/auth/login'} className="text-primary-color">
+                Forget password ?
+                </Link>
+              </p>
+            </div>
           </Form>
         </div>
         <div className="hidden lg:block">
           <img
             className="w-full h-[100vh]"
-            src="https://i.ibb.co/5RxCbN6/807b5de7f0bfaf58f8ca93fa73d51527.jpg"
+           src="/images/authBanner.webp"
+
             alt=""
           />
         </div>

@@ -36,7 +36,7 @@ const SignUp = () => {
   };
 
   return (
-    <div className="">
+    <div className="h-[100vh] overflow-hidden">
       <div className="lg:grid grid-cols-2">
         <div className="px-2 py-10 md:px-20 md:py-32 ">
           <div className="flex flex-col gap-2 justify-center items-center">
@@ -98,7 +98,7 @@ const SignUp = () => {
         <div className="hidden lg:block">
           <img
             className="w-full h-full"
-            src="https://vidtube-5rhnp42f6-siam-hasans-projects.vercel.app/images/auth.jpg"
+            src="/images/authBanner.webp"
             alt=""
           />
         </div>
@@ -107,5 +107,5 @@ const SignUp = () => {
     </div>
   );
 };
-
+         
 export default SignUp;

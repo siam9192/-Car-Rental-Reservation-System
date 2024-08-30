@@ -30,6 +30,20 @@ const authApi = baseApi.injectEndpoints({
         };
       },
     }),
+    recoverAccountRequest:builder.mutation({
+      query: (data) => ({
+        url: '/auth/recover-account-request',
+        method: 'POST',
+        body: data,
+      }),
+    }),
+    recoverAccount:builder.mutation({
+      query: (data) => ({
+        url: '/auth/recover-account',
+        method: 'POST',
+        body: data,
+      }),
+    }),
     updateProfile: builder.mutation({
       query: (data) => ({
         url: '/auth/update-user',
@@ -46,4 +60,6 @@ export const {
   useSignupMutation,
   useLoginMutation,
   useUpdateProfileMutation,
+  useRecoverAccountMutation,
+  useRecoverAccountRequestMutation
 } = authApi;

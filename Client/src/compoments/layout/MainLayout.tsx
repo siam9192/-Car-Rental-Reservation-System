@@ -11,8 +11,8 @@ const MainLayout = () => {
   const { pathname } = useLocation();
   const dispatch = useAppDispatch();
 
-  const headerHiddenPaths = ['/auth/sign-up', '/auth/login','/payment-loading'];
-  const footerHiddenPaths = ['/auth/sign-up', '/auth/login','/payment-loading'];
+  const headerHiddenPaths = ['/auth/sign-up', '/auth/login','/auth/forget-password','/payment-loading'];
+  const footerHiddenPaths = ['/auth/sign-up', '/auth/login','/auth/forget-password','/payment-loading'];
   const isSidebarOpen = useAppSelector((state) => state.toggle.isSidebarOpen);
 
   // close the sidebar when the path will be change
@@ -26,7 +26,7 @@ const MainLayout = () => {
     <>
       {!headerHiddenPaths.includes(pathname) && <Header />}
       <Container
-        disablePaths={['/car-listing', '/car', '/auth/sign-up', '/auth/login']}
+        disablePaths={['/car-listing', '/car', '/auth/sign-up', '/auth/login','/auth/forget-password']}
       >
         <Outlet />
         <Sidebar />

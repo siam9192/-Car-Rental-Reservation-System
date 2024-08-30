@@ -50,14 +50,7 @@ const Header = () => {
 
           <div className="flex items-center gap-3">
             {token ? (
-              // <div className="pl-4 md:flex items-center gap-2 rounded-full border bg-blue-100 hidden md:block">
-              //   <h2 className="font-bold uppercase">SIAM</h2>
-              //   <img
-              //     className="size-10 rounded-full"
-              //     src='https://media.lordicon.com/icons/wired/flat/21-avatar.gif'
-              //     alt=""
-              //   />
-              // </div>
+            
               <div>
 
               </div>

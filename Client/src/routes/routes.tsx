@@ -16,8 +16,10 @@ import TermsAndConditions from '../pages/termsAndConditions/TermsAndConditions';
 import NotFound from '../pages/error/NotFound';
 import About from '../pages/about/About';
 import PaymentLoading from '../pages/paymentLoading.tsx/PaymentLoading';
-import BookingConfirm from '../pages/dashboard/global/bookingConfirm/BookingConfirm';
-import Booking from '../pages/dashboard/admin/booking/Booking';
+import BookingConfirm from '../pages/bookingConfirm/BookingConfirm';
+import Booking from '../pages/booking/Booking';
+import ForgetPassword from '../pages/forgetPassword/ForgetPassword';
+
 
 const routes = createBrowserRouter([
   {
@@ -77,6 +79,14 @@ const routes = createBrowserRouter([
           </AuthRouteProtector>
         ),
       },
+      {
+        path:'/booking-confirm/:id',
+        element:<BookingConfirm/>
+      },
+      {
+        path:'/auth/forget-password',
+        element:<ForgetPassword/>
+      }
     ],
   },
   {
@@ -91,10 +101,6 @@ const routes = createBrowserRouter([
       {
         path: 'update-car/:id',
         element: <UpdateCar />,
-      },
-      {
-        path:'booking-confirm/:id',
-        element:<BookingConfirm/>
       }
     ],
   },
@@ -105,10 +111,7 @@ const routes = createBrowserRouter([
         <DashboardLayout />
       </PrivateRoute>
     ),
-    children: [...routeGenerator(userPaths),{
-      path:'booking-confirm/:id',
-      element:<BookingConfirm/>
-    }],
+    children: [...routeGenerator(userPaths)],
   },
 ]);
 

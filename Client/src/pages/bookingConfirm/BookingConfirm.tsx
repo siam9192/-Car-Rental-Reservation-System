@@ -1,9 +1,8 @@
 import React from 'react'
 import { useNavigate, useParams } from 'react-router-dom'
-import { useAppSelector } from '../../../../redux/hook'
-import DashboardSectionContainer from '../../../../compoments/container/DashboardSectionContainer'
-import { useConfirmBookingMutation, useGetBookingQuery } from '../../../../redux/features/booking/booking.api'
-import { da, el } from 'date-fns/locale'
+import { useAppSelector } from '../../redux/hook'
+import DashboardSectionContainer from '../../compoments/container/DashboardSectionContainer'
+import { useConfirmBookingMutation, useGetBookingQuery } from '../../redux/features/booking/booking.api'
 import { toast } from 'sonner'
 
 const BookingConfirm = () => {
@@ -52,8 +51,14 @@ const BookingConfirm = () => {
     <div>
      <h1 className='text-3xl text-slate-50 font-medium'>Check your Booking Details</h1>
   <div className='flex justify-center items-center'>
-  <div className='w-full lg:w-1/2'>
+  <div className='lg:w-1/2'>
    <DashboardSectionContainer>
+    <div>
+   <div className='flex justify-center items-center'>
+   <img className='w-1/2' src={booking?.car.images[0]} alt="" />
+   </div>
+
+    </div>
         <div className='space-y-4'>
             <h3 className='text-xl dark:text-slate-100'>Car: {booking?.car.name}</h3>
             <h3 className='text-xl dark:text-slate-100'>Brand: {booking?.car.brand}</h3>

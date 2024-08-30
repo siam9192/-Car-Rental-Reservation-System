@@ -19,12 +19,7 @@ export const adminPaths: TSidebarItem[] = [
     path: '',
     element: <AdminOverview />,
   },
-  {
-    icon: LiaCarSideSolid,
-    title: 'Book Car',
-    path: 'booking',
-    element: <Booking />,
-  },
+  
 
   {
     icon: IoCarSportOutline,

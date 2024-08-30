@@ -8,7 +8,8 @@ const Sidebar = () => {
   const { pathname } = useLocation();
   const dispatch = useAppDispatch();
   const isSidebarOpen = useAppSelector((state) => state.toggle.isSidebarOpen);
-
+  const token = useAppSelector(state=>state.auth.token)
+  console.log(token)
   useEffect(() => {
     if (isSidebarOpen) {
       window.document.body.style.overflow = 'hidden';
@@ -43,7 +44,24 @@ const Sidebar = () => {
               </Link>
             );
           })}
+          {
+            !token &&    <div className='mt-5 space-x-2'>
+  
+            <Link to={'/auth/login'}>
+              <button className="  bg-black dark:bg-white text-white dark:text-black  text-wrap px-4 py-2 rounded-full  ">
+                Login
+              </button>
+            </Link>
+            <Link to={'/auth/sign-up'}>
+              <button className=" bg-primary-color text-wrap px-4 py-2 rounded-full text-white ">
+                SignUp
+              </button>
+            </Link>
+            </div>
+          }
         </nav>
+   
+        
       </div>
     </div>
   );
