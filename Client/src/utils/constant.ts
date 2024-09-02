@@ -19,6 +19,6 @@ export const navRoutes = [
   },
   {
     display: 'Contact Us',
-    path: '/about-us',
+    path: '/contact-us',
   }
 ];

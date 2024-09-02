@@ -46,7 +46,7 @@ const EditProfile = () => {
     address: user?.address,
   };
 
-  const [updateProfile, { isLoading }] = useUpdateProfileMutation();
+  const [updateProfile, { isLoading:isUpdating }] = useUpdateProfileMutation();
 
   const onSubmit = async (values: any) => {
     for (const key in values) {
@@ -117,8 +117,8 @@ const EditProfile = () => {
             <FormInput name="phone" label="Phone" type="text" />
             <FormInput name="address" label="Address" type="text" />
             <div className="mt-5 text-end">
-              <button className="px-4 py-2  bg-secondary-color text-white">
-                Update
+              <button disabled={isUpdating} className="px-4 py-2  bg-secondary-color text-white">
+                {isUpdating ? 'Updating...':'Update'}
               </button>
             </div>
           </Form>
